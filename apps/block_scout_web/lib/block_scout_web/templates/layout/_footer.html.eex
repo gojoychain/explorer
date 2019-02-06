@@ -14,6 +14,12 @@
           <a href="https://github.com/ghuchain" rel="noreferrer" target="_blank" class="icon-link" data-toggle="tooltip" data-placement="top" title="<%= gettext("Github") %>">
             <i class="fab fa-github"></i>
           </a>
+          <a href="https://www.facebook.com/Growth-Hack-Union-721440061587911/" rel="noreferrer" target="_blank" class="icon-link" data-toggle="tooltip" data-placement="top" title="<%= gettext("Facebook") %>">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/ghu" rel="noreferrer" target="_blank" class="icon-link" data-toggle="tooltip" data-placement="top" title="<%= gettext("LinkedIn") %>">
+            <i class="fab fa-linkedin"></i>
+          </a>
         </div>
       </div>
     </div>
