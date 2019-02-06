@@ -10,7 +10,7 @@ block_transformers = %{
 }
 
 # Compile time environment variable access requires recompilation.
-configured_transformer = System.get_env("BLOCK_TRANSFORMER") || "base"
+configured_transformer = System.get_env("BLOCK_TRANSFORMER") || "clique"
 
 block_transformer =
   case Map.get(block_transformers, configured_transformer) do

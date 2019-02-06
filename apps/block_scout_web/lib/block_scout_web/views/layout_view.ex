@@ -4,65 +4,17 @@ defmodule BlockScoutWeb.LayoutView do
   alias Plug.Conn
   alias Poison.Parser
 
-  @issue_url "https://github.com/poanetwork/blockscout/issues/new"
+  @issue_url "https://github.com/gojoychain/explorer/issues/new"
   @default_other_networks [
     %{
-      title: "POA Core",
-      url: "https://blockscout.com/poa/core"
+      title: "JOY Mainnet",
+      url: "https://gojoychain.com"
     },
     %{
-      title: "POA Sokol",
-      url: "https://blockscout.com/poa/sokol",
+      title: "JOY Testnet",
+      url: "https://testnet.gojoychain.com",
       test_net?: true
     },
-    %{
-      title: "xDai Chain",
-      url: "https://blockscout.com/poa/dai"
-    },
-    %{
-      title: "Ethereum Mainnet",
-      url: "https://blockscout.com/eth/mainnet"
-    },
-    %{
-      title: "Kovan Testnet",
-      url: "https://blockscout.com/eth/kovan",
-      test_net?: true
-    },
-    %{
-      title: "Ropsten Testnet",
-      url: "https://blockscout.com/eth/ropsten",
-      test_net?: true
-    },
-    %{
-      title: "Goerli Testnet",
-      url: "https://blockscout.com/eth/goerli",
-      test_net?: true
-    },
-    %{
-      title: "Rinkeby Testnet",
-      url: "https://blockscout.com/eth/rinkeby",
-      test_net?: true
-    },
-    %{
-      title: "Ethereum Classic",
-      url: "https://blockscout.com/etc/mainnet",
-      other?: true
-    },
-    %{
-      title: "Aerum Mainnet",
-      url: "https://blockscout.com/aerum/mainnet",
-      other?: true
-    },
-    %{
-      title: "Callisto Mainnet",
-      url: "https://blockscout.com/callisto/mainnet",
-      other?: true
-    },
-    %{
-      title: "RSK Mainnet",
-      url: "https://blockscout.com/rsk/mainnet",
-      other?: true
-    }
   ]
 
   alias BlockScoutWeb.SocialMedia
@@ -72,7 +24,7 @@ defmodule BlockScoutWeb.LayoutView do
   end
 
   def logo do
-    Keyword.get(application_config(), :logo) || "/images/blockscout_logo.svg"
+    Keyword.get(application_config(), :logo) || "/images/ghu_text_logo.png"
   end
 
   def logo_footer do
@@ -81,11 +33,11 @@ defmodule BlockScoutWeb.LayoutView do
   end
 
   def subnetwork_title do
-    Keyword.get(application_config(), :subnetwork) || "Sokol Testnet"
+    Keyword.get(application_config(), :subnetwork) || "GHU Testnet"
   end
 
   def network_title do
-    Keyword.get(application_config(), :network) || "POA"
+    Keyword.get(application_config(), :network) || "GHU"
   end
 
   defp application_config do
@@ -98,7 +50,7 @@ defmodule BlockScoutWeb.LayoutView do
 
   def issue_link(conn) do
     params = [
-      labels: "BlockScout",
+      labels: "GHU Explorer",
       body: issue_body(conn),
       title: subnetwork_title() <> ": <Issue Title>"
     ]
