@@ -116,12 +116,13 @@ defmodule Explorer.ExchangeRates do
     Application.get_env(:explorer, __MODULE__, [])[key]
   end
 
-  @spec fetch_rates :: Task.t()
-  defp fetch_rates do
-    Task.Supervisor.async_nolink(Explorer.MarketTaskSupervisor, fn ->
-      Source.fetch_exchange_rates()
-    end)
-  end
+  # GHU: disable exchange rate fetching
+  # @spec fetch_rates :: Task.t()
+  # defp fetch_rates do
+  #   Task.Supervisor.async_nolink(Explorer.MarketTaskSupervisor, fn ->
+  #     Source.fetch_exchange_rates()
+  #   end)
+  # end
 
   defp list_from_store(:ets) do
     table_name()
