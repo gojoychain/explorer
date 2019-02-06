@@ -10,7 +10,7 @@ defmodule Explorer.ExchangeRates do
   require Logger
 
   alias Explorer.Chain.Events.Publisher
-  alias Explorer.ExchangeRates.{Source, Token}
+  alias Explorer.ExchangeRates.Token
 
   @interval :timer.minutes(5)
   @table_name :exchange_rates
@@ -116,12 +116,13 @@ defmodule Explorer.ExchangeRates do
     Application.get_env(:explorer, __MODULE__, [])[key]
   end
 
-  @spec fetch_rates :: Task.t()
-  defp fetch_rates do
-    Task.Supervisor.async_nolink(Explorer.MarketTaskSupervisor, fn ->
-      Source.fetch_exchange_rates()
-    end)
-  end
+  # GHU: disable exchange rate fetching
+  # @spec fetch_rates :: Task.t()
+  # defp fetch_rates do
+  #   Task.Supervisor.async_nolink(Explorer.MarketTaskSupervisor, fn ->
+  #     Source.fetch_exchange_rates()
+  #   end)
+  # end
 
   defp list_from_store(:ets) do
     table_name()
