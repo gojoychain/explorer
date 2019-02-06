@@ -26,46 +26,13 @@ config :block_scout_web,
   },
   other_networks: [
     %{
-      title: "POA Core",
-      url: "https://blockscout.com/poa/core"
+      title: "GHU Mainnet",
+      url: "https://explorer.ghuchain.com"
     },
     %{
-      title: "POA Sokol",
-      url: "https://blockscout.com/poa/sokol",
-      test_net?: true
+      title: "GHU Testnet",
+      url: "https://testnet.ghuchain.com"
     },
-    %{
-      title: "xDai Chain",
-      url: "https://blockscout.com/poa/dai"
-    },
-    %{
-      title: "Ethereum Mainnet",
-      url: "https://blockscout.com/eth/mainnet"
-    },
-    %{
-      title: "Kovan Testnet",
-      url: "https://blockscout.com/eth/kovan",
-      test_net?: true
-    },
-    %{
-      title: "Ropsten Testnet",
-      url: "https://blockscout.com/eth/ropsten",
-      test_net?: true
-    },
-    %{
-      title: "Goerli Testnet",
-      url: "https://blockscout.com/eth/goerli",
-      test_net?: true
-    },
-    %{
-      title: "Rinkeby Testnet",
-      url: "https://blockscout.com/eth/rinkeby",
-      test_net?: true
-    },
-    %{
-      title: "Ethereum Classic",
-      url: "https://blockscout.com/etc/mainnet"
-    }
   ]
 
 config :block_scout_web, BlockScoutWeb.Counters.BlocksIndexedCounter, enabled: true

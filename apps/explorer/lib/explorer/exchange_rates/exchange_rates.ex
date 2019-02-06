@@ -19,7 +19,8 @@ defmodule Explorer.ExchangeRates do
   def handle_info(:update, state) do
     Logger.debug(fn -> "Updating cached exchange rates" end)
 
-    fetch_rates()
+    # GHU: disable exchange rate fetching
+    # fetch_rates()
 
     {:noreply, state}
   end
@@ -42,7 +43,8 @@ defmodule Explorer.ExchangeRates do
   def handle_info({_ref, {:error, reason}}, state) do
     Logger.warn(fn -> "Failed to get exchange rates with reason '#{reason}'." end)
 
-    fetch_rates()
+    # GHU: disable exchange rate fetching
+    # fetch_rates()
 
     {:noreply, state}
   end
