@@ -45,3 +45,5 @@ screenshots/
 
 # dotenv
 .env
+
+.elixir_ls

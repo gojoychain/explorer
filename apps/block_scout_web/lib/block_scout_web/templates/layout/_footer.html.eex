@@ -31,6 +31,7 @@
       <div class="col-md-<%= col_size %> footer-list">
         <h3>Gojoy Chain</h3>
         <ul>
+          <li><a href="https://ghu.io" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("GHU.io") %></a></li>
           <li><a href="<%= issue_link(@conn) %>" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Submit an Issue") %></a></li>
           <li><a href="https://www.ghuchain.com" rel="noreferrer" class="footer-link"><%= gettext("Support") %></a></li>
         </ul>
