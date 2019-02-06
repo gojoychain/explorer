@@ -36,7 +36,7 @@
 
     <div class="row">
       <div class="col-md-<%= col_size %> footer-list">
-        <h3>BlockScout</h3>
+        <h3>GHU Chain</h3>
         <hr>
         <ul>
           <li><a href="<%= issue_link(@conn) %>" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Submit an Issue") %></a></li>
