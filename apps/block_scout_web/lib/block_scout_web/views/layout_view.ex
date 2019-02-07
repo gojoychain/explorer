@@ -37,7 +37,7 @@ defmodule BlockScoutWeb.LayoutView do
   end
 
   def network_title do
-    Keyword.get(application_config(), :network) || "GHU"
+    Keyword.get(application_config(), :network) || "GEC"
   end
 
   defp application_config do
