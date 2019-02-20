@@ -27,7 +27,7 @@ config :block_scout_web,
   other_networks: [
     %{
       title: "GHU Mainnet",
-      url: "https://explorer.ghuchain.com"
+      url: "https://ghuchain.com"
     },
     %{
       title: "GHU Testnet",

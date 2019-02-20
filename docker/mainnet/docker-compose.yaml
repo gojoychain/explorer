@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  explorer-mainnet:
+    hostname: explorer-mainnet
+    container_name: explorer-mainnet
+    build:
+      context: ../../
+      dockerfile: ./docker/mainnet/Dockerfile
+      args:
+        PORT: 5000
+        MIX_ENV: ${MIX_ENV}
+        NETWORK: ${NETWORK}
+        SUBNETWORK: ${SUBNETWORK}
+        COIN: ${COIN}
+        ETHEREUM_JSONRPC_VARIANT: ${ETHEREUM_JSONRPC_VARIANT}
+        ETHEREUM_JSONRPC_HTTP_URL: ${ETHEREUM_JSONRPC_HTTP_URL}
+        ETHEREUM_JSONRPC_WS_URL: ${ETHEREUM_JSONRPC_WS_URL}
+        DATABASE_URL: ${DATABASE_URL}
+        SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+    restart: on-failure
+    network_mode: "host"
+    ports:
+      - 5000
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "10"
