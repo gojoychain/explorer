@@ -8,6 +8,9 @@ defmodule BlockScoutWeb.Chain.MarketHistoryChartController do
     with true <- ajax?(conn) do
       exchange_rate = Market.get_exchange_rate(Explorer.coin()) || Token.null()
 
+      # TODO: remove once the actual rate is pulled from price API
+      exchange_rate = Map.replace!(exchange_rate, :usd_value, Decimal.new(3))
+
       market_history_data =
         30
         |> Market.fetch_recent_history()
