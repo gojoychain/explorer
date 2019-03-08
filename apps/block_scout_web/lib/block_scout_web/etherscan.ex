@@ -907,7 +907,10 @@ defmodule BlockScoutWeb.Etherscan do
           fields: %{
             status: @status_type,
             message: @message_type,
-            result: @aggregated_balance_model
+            result: %{
+              type: "model",
+              model: @aggregated_balance_model
+            }
           }
         }
       },
