@@ -23,20 +23,22 @@ defmodule BlockScoutWeb.API.RPC.AddressController do
   def balanceaggregate(conn, params) do
     with {:address_param, {:ok, address_param}} <- fetch_address(params),
          {:format, {:ok, address_hash}} <- to_address_hash(address_param),
-         {:format, {:ok, address_hashes}} <- to_address_hashes(address_param),
-         {:ok, token_list} <- list_tokens(address_hash) do
+         {:format, {:ok, address_hashes}} <- to_address_hashes(address_param) do
       addresses = hashes_to_addresses(address_hashes)
       address = List.first(addresses)
-      render(conn, :balanceaggregate, %{address: address, tokens: token_list})
+
+      case list_tokens(address_hash) do
+        {:ok, token_list} -> 
+          render(conn, :balanceaggregate, %{address: address, tokens: token_list})
+        {:error, :not_found} -> 
+          render(conn, :balanceaggregate, %{address: address, tokens: []})
+      end
     else
       {:address_param, :error} ->
         render(conn, :error, error: "Query parameter address is required")
 
       {:format, :error} ->
-        render(conn, :error, error: "Invalid address format")
-
-      {:error, :not_found} ->
-        render(conn, :error, error: "No tokens found", data: [])
+        render(conn, :error, error: "Invalid address hash")
     end
   end
 
