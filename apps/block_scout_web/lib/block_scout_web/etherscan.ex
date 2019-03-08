@@ -1030,6 +1030,40 @@ defmodule BlockScoutWeb.Etherscan do
     }
   }
 
+  @account_balanceall_action %{
+    name: "balanceall",
+    description: "Get all balances for address. Also available through a GraphQL 'addresses' query.",
+    required_params: [
+      %{
+        key: "address",
+        placeholder: "addressHash",
+        type: "string",
+        description: "A 160-bit code used for identifying Accounts."
+      }
+    ],
+    optional_params: [],
+    responses: [
+      %{
+        code: "200",
+        description: "successful operation",
+        example_value: Jason.encode!(@account_balance_example_value),
+        model: %{
+          name: "Result",
+          fields: %{
+            status: @status_type,
+            message: @message_type,
+            result: @wei_type
+          }
+        }
+      },
+      %{
+        code: "200",
+        description: "error",
+        example_value: Jason.encode!(@account_balance_example_value_error)
+      }
+    ]
+  }
+
   @account_balance_action %{
     name: "balance",
     description: """
@@ -2205,6 +2239,7 @@ defmodule BlockScoutWeb.Etherscan do
   @account_module %{
     name: "account",
     actions: [
+      @account_balanceall_action,
       @account_balance_action,
       @account_balancemulti_action,
       @account_txlist_action,
