@@ -1064,7 +1064,7 @@ defmodule BlockScoutWeb.Etherscan do
 
   @account_balanceaggregate_action %{
     name: "balanceaggregate",
-    description: "Get all balances for address. Also available through a GraphQL 'addresses' query.",
+    description: "Get native and custom token balances by address.",
     required_params: [
       %{
         key: "address",
