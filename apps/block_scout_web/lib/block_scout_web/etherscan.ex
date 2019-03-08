@@ -56,7 +56,8 @@ defmodule BlockScoutWeb.Etherscan do
         "isError" => "0",
         "txreceipt_status" => "1",
         "input" =>
-          "0xf00d4b5d000000000000000000000000036c8cecce8d8bbf0831d840d7f29c9e3ddefa63000000000000000000000000c5a96db085dda36ffbe390f455315d30d6d3dc52",
+          "0xa9059cbb000000000000000000000000939592864c0bd3355b2d54e4fa2203e8343b6d6a000000000000000000000000000000000000000000000000000000e8d4a51000",
+        "tokenTransferReceiver" => "0x939592864c0bd3355b2d54e4fa2203e8343b6d6a",
         "contractAddress" => "",
         "cumulativeGasUsed" => "122207",
         "gasUsed" => "122207",
@@ -648,6 +649,7 @@ defmodule BlockScoutWeb.Etherscan do
       },
       txreceipt_status: @status_type,
       input: @input_type,
+      tokenTransferReceiver: @address_hash_type,
       contractAddress: @address_hash_type,
       cumulativeGasUsed: @gas_type,
       gasUsed: @gas_type,
