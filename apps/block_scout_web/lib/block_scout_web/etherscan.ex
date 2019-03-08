@@ -1030,7 +1030,19 @@ defmodule BlockScoutWeb.Etherscan do
     }
   }
 
-  @account_balanceall_action %{
+  @aggregated_balance_model %{
+    name: "AggregatedBalance",
+    fields: %{
+      address: @address_hash_type,
+      native_token_balance: @wei_type,
+      tokens: %{
+        type: "array",
+        array_type: @token_balance_model
+      }
+    }
+  }
+
+  @account_balanceaggregate_action %{
     name: "balanceall",
     description: "Get all balances for address. Also available through a GraphQL 'addresses' query.",
     required_params: [
@@ -1046,20 +1058,20 @@ defmodule BlockScoutWeb.Etherscan do
       %{
         code: "200",
         description: "successful operation",
-        example_value: Jason.encode!(@account_balance_example_value),
+        example_value: Jason.encode!(@account_balanceaggregate_example_value),
         model: %{
           name: "Result",
           fields: %{
             status: @status_type,
             message: @message_type,
-            result: @wei_type
+            result: @aggregated_balance_model
           }
         }
       },
       %{
         code: "200",
         description: "error",
-        example_value: Jason.encode!(@account_balance_example_value_error)
+        example_value: Jason.encode!(@account_balanceaggregate_example_value_error)
       }
     ]
   }
