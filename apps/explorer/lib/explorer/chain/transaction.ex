@@ -28,11 +28,33 @@ defmodule Explorer.Chain.Transaction do
   alias Explorer.Chain.Transaction.{Fork, Status}
   alias Explorer.Repo
 
-  @optional_attrs ~w(block_hash block_number created_contract_address_hash cumulative_gas_used earliest_processing_start
-                     error gas_used index internal_transactions_indexed_at created_contract_code_indexed_at status
-                     to_address_hash)a
-
-  @required_attrs ~w(from_address_hash gas gas_price hash input nonce r s v value)a
+  @optional_attrs ~w(
+    block_hash
+    block_number
+    created_contract_address_hash
+    created_contract_code_indexed_at
+    cumulative_gas_used
+    earliest_processing_start
+    error
+    gas_used
+    index
+    internal_transactions_indexed_at
+    status
+    token_transfer_receiver_address_hash
+    to_address_hash
+  )a
+  @required_attrs ~w(
+    from_address_hash
+    gas
+    gas_price
+    hash
+    input
+    nonce
+    r
+    s
+    v
+    value
+  )a
 
   @typedoc """
   X coordinate module n in
