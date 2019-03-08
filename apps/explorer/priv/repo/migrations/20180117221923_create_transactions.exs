@@ -48,6 +48,9 @@ defmodule Explorer.Repo.Migrations.CreateTransactions do
       # `null` when it is a contract creation transaction
       add(:to_address_hash, references(:addresses, column: :hash, on_delete: :delete_all, type: :bytea), null: true)
       add(:created_contract_address_hash, references(:addresses, column: :hash, type: :bytea), null: true)
+
+      # `null` when transaction is not a token transfer
+      add(:token_transfer_receiver_address_hash, references(:addresses, column: :hash, on_delete: :delete_all, type: :bytea), null: true)
     end
 
     create(
@@ -217,6 +220,14 @@ defmodule Explorer.Repo.Migrations.CreateTransactions do
         :transactions,
         [:created_contract_address_hash, "block_number DESC NULLS FIRST", "index DESC NULLS FIRST", :hash],
         name: "transactions_created_contract_address_hash_recent_collated_index"
+      )
+    )
+
+    create(
+      index(
+        :transactions,
+        [:token_transfer_receiver_address_hash, "block_number DESC NULLS FIRST", "index DESC NULLS FIRST", :hash],
+        name: "transactions_token_transfer_receiver_address_hash_recent_collated_index"
       )
     )
 
