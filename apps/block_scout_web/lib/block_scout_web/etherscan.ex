@@ -1063,7 +1063,7 @@ defmodule BlockScoutWeb.Etherscan do
   }
 
   @account_balanceaggregate_action %{
-    name: "balanceall",
+    name: "balanceaggregate",
     description: "Get all balances for address. Also available through a GraphQL 'addresses' query.",
     required_params: [
       %{
@@ -2271,7 +2271,7 @@ defmodule BlockScoutWeb.Etherscan do
   @account_module %{
     name: "account",
     actions: [
-      @account_balanceall_action,
+      @account_balanceaggregate_action,
       @account_balance_action,
       @account_balancemulti_action,
       @account_txlist_action,
