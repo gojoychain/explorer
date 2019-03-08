@@ -8,6 +8,15 @@ defmodule BlockScoutWeb.API.RPC.AddressView do
     RPCView.render("show.json", data: accounts)
   end
 
+  def render("balanceaggregate.json", %{address: address, tokens: tokens}) do
+    data = %{
+      address: "#{address.hash}",
+      native_token_balance: "#{address.fetched_coin_balance.value}",
+      tokens: Enum.map(tokens, &prepare_token/1)
+    }
+    RPCView.render("show.json", data: data)
+  end
+
   def render("balance.json", %{addresses: [address]}) do
     RPCView.render("show.json", data: balance(address))
   end

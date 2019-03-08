@@ -27,11 +27,7 @@ defmodule BlockScoutWeb.API.RPC.AddressController do
          {:ok, token_list} <- list_tokens(address_hash) do
       addresses = hashes_to_addresses(address_hashes)
       address = List.first(addresses)
-      render(conn, :balanceaggregate, %{
-        address: address_hash,
-        native_token_balance: "#{address.fetched_coin_balance.value}",
-        tokens: token_list
-      })
+      render(conn, :balanceaggregate, %{address: address, tokens: token_list})
     else
       {:address_param, :error} ->
         render(conn, :error, error: "Query parameter address is required")
