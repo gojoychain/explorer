@@ -311,6 +311,7 @@ defmodule Explorer.Etherscan do
     |> where([t], t.to_address_hash == ^address_hash)
     |> or_where([t], t.from_address_hash == ^address_hash)
     |> or_where([t], t.created_contract_address_hash == ^address_hash)
+    |> or_where([t], t.token_transfer_receiver_address_hash == ^address_hash)
   end
 
   @token_transfer_fields ~w(
