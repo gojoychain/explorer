@@ -22,7 +22,7 @@ defmodule BlockScoutWeb.API.RPC.AddressController do
         render(conn, :error, error: "Query parameter address is required")
 
       {:format, :error} ->
-        render(conn, :error, error: "Invalid address hash")
+        render(conn, :error, error: "Invalid address format")
     end
   end
 
