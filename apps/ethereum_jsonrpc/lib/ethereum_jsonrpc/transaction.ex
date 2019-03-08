@@ -60,7 +60,7 @@ defmodule EthereumJSONRPC.Transaction do
           s: non_neg_integer(),
           to_address_hash: EthereumJSONRPC.address(),
           token_transfer_receiver_address_hash: String.t(),
-          transaction_index: non_neg_integer()
+          transaction_index: non_neg_integer(),
           v: non_neg_integer(),
           value: non_neg_integer(),
         }
