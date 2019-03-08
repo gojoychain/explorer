@@ -182,7 +182,7 @@ defmodule EthereumJSONRPC.Transaction do
       s: s,
       to_address_hash: to_address_hash,
       token_transfer_receiver_address_hash: token_transfer_receiver_address(input),
-      transaction_index: index
+      transaction_index: index,
       v: v,
       value: value,
     }
