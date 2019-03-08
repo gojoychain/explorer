@@ -126,6 +126,8 @@ defmodule Explorer.Chain.Transaction do
        the X coordinate of a point R, modulo the curve order n.
    * `status` - whether the transaction was successfully mined or failed.  `nil` when transaction is pending or has only
      been collated into one of the `uncles` in one of the `forks`.
+   * `token_transfer_receiver_address` - address of the receiver if the transaction is a token transfer
+   * `token_transfer_receiver_address_hash` - `token_transfer_receiver_address` foreign key
    * `to_address` - sink of `value`
    * `to_address_hash` - `to_address` foreign key
    * `uncles` - uncle blocks where `forks` were collated
@@ -158,6 +160,8 @@ defmodule Explorer.Chain.Transaction do
           r: r(),
           s: s(),
           status: Status.t() | nil,
+          token_transfer_receiver_address: %Ecto.Association.NotLoaded{} | Address.t() | nil,
+          token_transfer_receiver_address_hash: Hash.Address.t() | nil,
           to_address: %Ecto.Association.NotLoaded{} | Address.t() | nil,
           to_address_hash: Hash.Address.t() | nil,
           uncles: %Ecto.Association.NotLoaded{} | [Block.t()],
@@ -241,6 +245,14 @@ defmodule Explorer.Chain.Transaction do
       :created_contract_address,
       Address,
       foreign_key: :created_contract_address_hash,
+      references: :hash,
+      type: Hash.Address
+    )
+
+    belongs_to(
+      :token_transfer_receiver_address,
+      Address,
+      foreign_key: :token_transfer_receiver_address_hash,
       references: :hash,
       type: Hash.Address
     )
