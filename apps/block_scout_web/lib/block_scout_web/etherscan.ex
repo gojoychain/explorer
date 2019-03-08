@@ -3,6 +3,26 @@ defmodule BlockScoutWeb.Etherscan do
   Documentation data for Etherscan-compatible API.
   """
 
+  @account_balanceaggregate_example_value %{
+    "address" => "0xd5d087daabc73fc6cc5d9c1131b93acbd53a2428",
+    "native_token_balance" => "663046792267785498951364",
+    "tokens" => [
+      %{
+        "balance" => "135499",
+        "contractAddress" => "0x0000000000000000000000000000000000000000",
+        "name" => "Example Token",
+        "decimals" => "18",
+        "symbol" => "ET"
+      }
+    ]
+  }
+
+  @account_balanceaggregate_example_value_error %{
+    "status" => "0",
+    "message" => "Invalid address hash",
+    "result" => nil
+  }
+
   @account_balance_example_value %{
     "status" => "1",
     "message" => "OK",
