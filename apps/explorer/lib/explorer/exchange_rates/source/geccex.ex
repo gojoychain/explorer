@@ -31,10 +31,6 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
 
   @impl Source
   def source_url do
-    source_url(1)
-  end
-
-  def source_url(page) do
     app_id = Application.get_env(:explorer, Explorer.ExchangeRates, :app_id)
     code = Application.get_env(:explorer, Explorer.ExchangeRates, :code)
     "#{base_url()}/transfer/price?app_id=#{app_id}&code=#{code}"
