@@ -11,18 +11,14 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
 
   @impl Source
   def format_data(data) do
-    for item <- decode_json(data), not is_nil(item["last_updated"]) do
+    for item <- decode_json(data), not is_nil(item["data"]) do
       data_obj = item["data"]
-
-
-      {last_updated_as_unix, _} = Integer.parse(item["last_updated"])
-      last_updated = DateTime.from_unix!(last_updated_as_unix)
 
       %Token{
         available_supply: to_decimal(0),
         btc_value: to_decimal(0),
         id: item["id"],
-        last_updated: last_updated,
+        last_updated: DateTime.utc_now(),
         market_cap_usd: to_decimal(0),
         name: item["name"],
         symbol: item["symbol"],
@@ -37,6 +33,14 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
     app_id = Application.get_env(:explorer, Explorer.ExchangeRates, :app_id)
     code = Application.get_env(:explorer, Explorer.ExchangeRates, :code)
     "#{base_url()}/transfer/price?app_id=#{app_id}&code=#{code}"
+  end
+
+  @spec body() :: 
+  def body(token_symbol) do
+    # GHU: Hardcoded GEC token symbol since pulling from GECCEX API.
+    Jason.encode!(%{
+      "currency": "GEC"
+    })
   end
 
   defp base_url do
