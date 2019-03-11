@@ -19,6 +19,16 @@ defmodule Explorer.ExchangeRates.Source do
     end
   end
 
+  defp fetch_exchange_rates_geccex(source) do
+    case HTTPoison.post(source.source_url(), source.body(), headers()) do
+      {:ok, %Response{body: body, status_code: 200}} ->
+        {:ok, source.format_data(body)}
+
+      {:error, %Error{reason: reason}} ->
+        {:error, reason}
+    end
+  end
+
   defp fetch_exchange_rates_from_paginable_source(source, page \\ 1) do
     case HTTPoison.get(source.source_url(page), headers()) do
       {:ok, %Response{body: body, status_code: 200}} ->
