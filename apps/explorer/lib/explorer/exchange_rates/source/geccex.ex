@@ -12,19 +12,22 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
   @impl Source
   def format_data(data) do
     for item <- decode_json(data), not is_nil(item["last_updated"]) do
+      data_obj = item["data"]
+
+
       {last_updated_as_unix, _} = Integer.parse(item["last_updated"])
       last_updated = DateTime.from_unix!(last_updated_as_unix)
 
       %Token{
-        available_supply: to_decimal(item["available_supply"]),
-        btc_value: to_decimal(item["price_btc"]),
+        available_supply: to_decimal(0),
+        btc_value: to_decimal(0),
         id: item["id"],
         last_updated: last_updated,
-        market_cap_usd: to_decimal(item["market_cap_usd"]),
+        market_cap_usd: to_decimal(0),
         name: item["name"],
         symbol: item["symbol"],
-        usd_value: to_decimal(item["price_usd"]),
-        volume_24h_usd: to_decimal(item["24h_volume_usd"])
+        usd_value: to_decimal(data_obj["usd"]),
+        volume_24h_usd: to_decimal(0)
       }
     end
   end
