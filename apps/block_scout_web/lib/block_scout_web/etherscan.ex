@@ -3,6 +3,26 @@ defmodule BlockScoutWeb.Etherscan do
   Documentation data for Etherscan-compatible API.
   """
 
+  @account_balanceaggregate_example_value %{
+    "address" => "0xd5d087daabc73fc6cc5d9c1131b93acbd53a2428",
+    "native_token_balance" => "663046792267785498951364",
+    "tokens" => [
+      %{
+        "balance" => "135499",
+        "contractAddress" => "0x0000000000000000000000000000000000000000",
+        "name" => "Example Token",
+        "decimals" => "18",
+        "symbol" => "ET"
+      }
+    ]
+  }
+
+  @account_balanceaggregate_example_value_error %{
+    "status" => "0",
+    "message" => "Invalid address hash",
+    "result" => nil
+  }
+
   @account_balance_example_value %{
     "status" => "1",
     "message" => "OK",
@@ -851,6 +871,55 @@ defmodule BlockScoutWeb.Etherscan do
         example: ~s("1537234460")
       }
     }
+  }
+
+  @aggregated_balance_model %{
+    name: "AggregatedBalance",
+    fields: %{
+      address: @address_hash_type,
+      native_token_balance: @wei_type,
+      tokens: %{
+        type: "array",
+        array_type: @token_balance_model
+      }
+    }
+  }
+
+  @account_balanceaggregate_action %{
+    name: "balanceaggregate",
+    description: "Get native and custom token balances by address.",
+    required_params: [
+      %{
+        key: "address",
+        placeholder: "addressHash",
+        type: "string",
+        description: "A 160-bit code used for identifying Accounts."
+      }
+    ],
+    optional_params: [],
+    responses: [
+      %{
+        code: "200",
+        description: "successful operation",
+        example_value: Jason.encode!(@account_balanceaggregate_example_value),
+        model: %{
+          name: "Result",
+          fields: %{
+            status: @status_type,
+            message: @message_type,
+            result: %{
+              type: "model",
+              model: @aggregated_balance_model
+            }
+          }
+        }
+      },
+      %{
+        code: "200",
+        description: "error",
+        example_value: Jason.encode!(@account_balanceaggregate_example_value_error)
+      }
+    ]
   }
 
   @account_balance_action %{
@@ -1762,6 +1831,7 @@ defmodule BlockScoutWeb.Etherscan do
   @account_module %{
     name: "account",
     actions: [
+      @account_balanceaggregate_action,
       @account_balance_action,
       @account_balancemulti_action,
       @account_txlist_action,
