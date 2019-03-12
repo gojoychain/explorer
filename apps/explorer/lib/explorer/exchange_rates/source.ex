@@ -20,11 +20,6 @@ defmodule Explorer.ExchangeRates.Source do
       GECCEX ->
         fetch_exchange_rates_geccex(source)
     end
-    # if(source == CoinMarketCap) do
-    #   fetch_exchange_rates_from_paginable_source(source)
-    # else
-    #   fetch_exchange_rates_request(source)
-    # end
   end
 
   defp fetch_exchange_rates_geccex(source) do
