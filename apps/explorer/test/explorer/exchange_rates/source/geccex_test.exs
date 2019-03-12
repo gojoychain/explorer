@@ -19,12 +19,15 @@ defmodule Explorer.ExchangeRates.Source.GECCEXTest do
 
   describe "format_data/1" do
     test "returns valid tokens with valid data" do
+      # Need to format_data first to get the generated last_updated
+      formatted = GECCEX.format_data(@json)
+
       expected = [
         %Token{
           available_supply: Decimal.new("0"),
           btc_value: Decimal.new("0"),
           id: "ghu",
-          last_updated: DateTime.utc_now(),
+          last_updated: Map.get(List.first(formatted), :last_updated),
           market_cap_usd: Decimal.new("0"),
           name: "GHU",
           symbol: "GHU",
@@ -32,7 +35,7 @@ defmodule Explorer.ExchangeRates.Source.GECCEXTest do
           volume_24h_usd: Decimal.new("0")
         }
       ]
-      assert expected == GECCEX.format_data(@json)
+      assert expected == formatted
     end
 
     test "returns nothing when given bad data" do
