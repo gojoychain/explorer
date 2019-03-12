@@ -11,6 +11,7 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
 
   @impl Source
   def format_data(data) do
+    IO.puts "format_data"
     IO.inspect(data)
     for item <- decode_json(data), not is_nil(item["data"]) do
       data_obj = item["data"]
@@ -31,9 +32,9 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
 
   @impl Source
   def source_url do
-    exch_rates_config = Application.get_env(:explorer, Explorer.ExchangeRates)
-    app_id = Kernel.elem(List.keyfind(exch_rates_config, :app_id, 0), 1)
-    code = Kernel.elem(List.keyfind(exch_rates_config, :code, 0), 1)
+    app_id = config(:app_id)
+    code = config(:code)
+    IO.puts("#{base_url()}/transfer/price?app_id=#{app_id}&code=#{code}")
     "#{base_url()}/transfer/price?app_id=#{app_id}&code=#{code}"
   end
 
