@@ -34,8 +34,7 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
   def source_url do
     app_id = config(:app_id)
     code = config(:code)
-    IO.puts("#{base_url()}/transfer/price?app_id=#{app_id}&code=#{code}")
-    "#{base_url()}/transfer/price?app_id=#{app_id}&code=#{code}"
+    "#{base_url()}/transfer/price?appId=#{app_id}&code=#{code}"
   end
 
   @spec body() :: String.t()
