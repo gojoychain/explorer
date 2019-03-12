@@ -15,7 +15,7 @@ defmodule Explorer.ExchangeRates.Source.CoinMarketCap do
       {last_updated_as_unix, _} = Integer.parse(item["last_updated"])
       last_updated = DateTime.from_unix!(last_updated_as_unix)
 
-      token = %Token{
+      %Token{
         available_supply: to_decimal(item["available_supply"]),
         total_supply: to_decimal(item["total_supply"]),
         btc_value: to_decimal(item["price_btc"]),
@@ -27,8 +27,6 @@ defmodule Explorer.ExchangeRates.Source.CoinMarketCap do
         usd_value: to_decimal(item["price_usd"]),
         volume_24h_usd: to_decimal(item["24h_volume_usd"])
       }
-      IO.inspect(token)
-      token
     end
   end
 
