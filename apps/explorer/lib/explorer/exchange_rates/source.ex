@@ -3,7 +3,7 @@ defmodule Explorer.ExchangeRates.Source do
   Behaviour for fetching exchange rates from external sources.
   """
 
-  alias Explorer.ExchangeRates.Source.CoinMarketCap
+  alias Explorer.ExchangeRates.Source.{CoinMarketCap, CoinGecko, GECCEX}
   alias Explorer.ExchangeRates.Token
   alias HTTPoison.{Error, Response}
 
@@ -12,11 +12,19 @@ defmodule Explorer.ExchangeRates.Source do
   """
   @spec fetch_exchange_rates(module) :: {:ok, [Token.t()]} | {:error, any}
   def fetch_exchange_rates(source \\ exchange_rates_source()) do
-    if(source == CoinMarketCap) do
-      fetch_exchange_rates_from_paginable_source(source)
-    else
-      fetch_exchange_rates_request(source)
+    case source do
+      CoinMarketCap ->
+        fetch_exchange_rates_from_paginable_source(source)
+      CoinGecko ->
+        fetch_exchange_rates_request(source)
+      GECCEX ->
+        fetch_exchange_rates_geccex(source)
     end
+    # if(source == CoinMarketCap) do
+    #   fetch_exchange_rates_from_paginable_source(source)
+    # else
+    #   fetch_exchange_rates_request(source)
+    # end
   end
 
   defp fetch_exchange_rates_geccex(source) do

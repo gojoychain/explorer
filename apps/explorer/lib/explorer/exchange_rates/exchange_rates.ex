@@ -10,7 +10,7 @@ defmodule Explorer.ExchangeRates do
   require Logger
 
   alias Explorer.Chain.Events.Publisher
-  alias Explorer.ExchangeRates.Token
+  alias Explorer.ExchangeRates.{Token, Source}
 
   @interval :timer.minutes(5)
   @table_name :exchange_rates
