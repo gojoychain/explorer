@@ -14,20 +14,21 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
     json = decode_json(data)
     if Map.has_key?(json, "data") do
       data_obj = json["data"]
-      usd_value = Map.get(data_obj, "usd", 0)
 
-      [%Token{
-          available_supply: to_decimal(0),
-          btc_value: to_decimal(0),
-          id: "ghu",
-          last_updated: DateTime.utc_now(),
-          market_cap_usd: to_decimal(0),
-          name: "GHU",
-          symbol: "GHU",
-          usd_value: to_decimal(usd_value),
-          volume_24h_usd: to_decimal(0)
-        }
-      ]
+      if Map.has_key?(data_obj, "usd") do
+        [%Token{
+            available_supply: to_decimal(0),
+            btc_value: to_decimal(0),
+            id: "ghu",
+            last_updated: DateTime.utc_now(),
+            market_cap_usd: to_decimal(0),
+            name: "GHU",
+            symbol: "GHU",
+            usd_value: to_decimal(data_obj["usd"]),
+            volume_24h_usd: to_decimal(0)
+          }
+        ]
+      end
     end
   end
 
