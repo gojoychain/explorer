@@ -28,7 +28,9 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
             volume_24h_usd: to_decimal(0)
           }
         ]
+      else []
       end
+    else []
     end
   end
 
