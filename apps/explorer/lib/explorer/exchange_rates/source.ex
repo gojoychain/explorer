@@ -3,7 +3,7 @@ defmodule Explorer.ExchangeRates.Source do
   Behaviour for fetching exchange rates from external sources.
   """
 
-  alias Explorer.ExchangeRates.Source.CoinMarketCap
+  alias Explorer.ExchangeRates.Source.{CoinMarketCap, CoinGecko, GECCEX}
   alias Explorer.ExchangeRates.Token
   alias HTTPoison.{Error, Response}
 
@@ -12,10 +12,23 @@ defmodule Explorer.ExchangeRates.Source do
   """
   @spec fetch_exchange_rates(module) :: {:ok, [Token.t()]} | {:error, any}
   def fetch_exchange_rates(source \\ exchange_rates_source()) do
-    if(source == CoinMarketCap) do
-      fetch_exchange_rates_from_paginable_source(source)
-    else
-      fetch_exchange_rates_request(source)
+    case source do
+      CoinMarketCap ->
+        fetch_exchange_rates_from_paginable_source(source)
+      CoinGecko ->
+        fetch_exchange_rates_request(source)
+      GECCEX ->
+        fetch_exchange_rates_geccex(source)
+    end
+  end
+
+  defp fetch_exchange_rates_geccex(source) do
+    case HTTPoison.post(source.source_url(), source.body(), headers()) do
+      {:ok, %Response{body: body, status_code: 200}} ->
+        {:ok, source.format_data(body)}
+
+      {:error, %Error{reason: reason}} ->
+        {:error, reason}
     end
   end
 
@@ -81,7 +94,7 @@ defmodule Explorer.ExchangeRates.Source do
 
   @spec exchange_rates_source() :: module()
   defp exchange_rates_source do
-    config(:source) || Explorer.ExchangeRates.Source.CoinMarketCap
+    config(:source) || Explorer.ExchangeRates.Source.GECCEX
   end
 
   @spec config(atom()) :: term
