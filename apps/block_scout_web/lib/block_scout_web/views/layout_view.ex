@@ -3,7 +3,7 @@ defmodule BlockScoutWeb.LayoutView do
 
   alias Plug.Conn
 
-  @issue_url "https://github.com/ghuchain/ghu-explorer/issues/new"
+  @issue_url "https://github.com/gojoychain/explorer/issues/new"
 
   alias BlockScoutWeb.SocialMedia
 
@@ -16,11 +16,11 @@ defmodule BlockScoutWeb.LayoutView do
   end
 
   def subnetwork_title do
-    Keyword.get(application_config(), :subnetwork) || "GHU Testnet"
+    Keyword.get(application_config(), :subnetwork) || "JOY Testnet"
   end
 
   def network_title do
-    Keyword.get(application_config(), :network) || "GHU"
+    Keyword.get(application_config(), :network) || "JOY"
   end
 
   defp application_config do
@@ -33,7 +33,7 @@ defmodule BlockScoutWeb.LayoutView do
 
   def issue_link(conn) do
     params = [
-      labels: "GHU Explorer",
+      labels: "JOY Explorer",
       body: issue_body(conn),
       title: subnetwork_title() <> ": <Issue Title>"
     ]

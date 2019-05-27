@@ -11,7 +11,7 @@
 
       <div class="col-md-3">
         <div class="icon-links icon-links-primary footer-social-icons">
-          <a href="https://github.com/ghuchain" rel="noreferrer" target="_blank" class="icon-link" data-toggle="tooltip" data-placement="top" title="<%= gettext("Github") %>">
+          <a href="https://github.com/gojoychain" rel="noreferrer" target="_blank" class="icon-link" data-toggle="tooltip" data-placement="top" title="<%= gettext("Github") %>">
             <i class="fab fa-github"></i>
           </a>
           <a href="https://www.facebook.com/Growth-Hack-Union-721440061587911/" rel="noreferrer" target="_blank" class="icon-link" data-toggle="tooltip" data-placement="top" title="<%= gettext("Facebook") %>">
@@ -36,12 +36,12 @@
 
     <div class="row">
       <div class="col-md-<%= col_size %> footer-list">
-        <h3>GHU Chain</h3>
+        <h3>Gojoy Chain</h3>
         <hr>
         <ul>
           <li><a href="https://ghu.io" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("GHU.io") %></a></li>
-          <li><a href="https://docs.ghuchain.com" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Documentation") %></a></li>
-          <li><a href="mailto:contact@ghuchain.com" rel="noreferrer" class="footer-link"><%= gettext("Support") %></a></li>
+          <li><a href="https://docs.gojoychain.com" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Documentation") %></a></li>
+          <li><a href="mailto:contact@gojoychain.com" rel="noreferrer" class="footer-link"><%= gettext("Support") %></a></li>
         </ul>
       </div>
       <% main_nets = main_nets() %>

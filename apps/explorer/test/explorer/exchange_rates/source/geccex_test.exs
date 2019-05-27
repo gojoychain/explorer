@@ -26,11 +26,11 @@ defmodule Explorer.ExchangeRates.Source.GECCEXTest do
         %Token{
           available_supply: Decimal.new("0"),
           btc_value: Decimal.new("0"),
-          id: "ghu",
+          id: "joy",
           last_updated: Map.get(List.first(formatted), :last_updated),
           market_cap_usd: Decimal.new("0"),
-          name: "GHU",
-          symbol: "GHU",
+          name: "JOY",
+          symbol: "JOY",
           usd_value: Decimal.new("3.026378"),
           volume_24h_usd: Decimal.new("0")
         }
