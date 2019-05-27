@@ -142,7 +142,7 @@ defmodule Explorer.Mixfile do
     [
       maintainers: ["Gojoy Chain"],
       licenses: ["GPL 3.0"],
-      links: %{"GitHub" => "https://github.com/ghuchain/ghu-explorer"}
+      links: %{"GitHub" => "https://github.com/gojoychain/explorer"}
     ]
   end
 end
