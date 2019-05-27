@@ -3,7 +3,7 @@ defmodule BlockScoutWeb.LayoutView do
 
   alias Plug.Conn
 
-  @issue_url "https://github.com/ghuchain/ghu-explorer/issues/new"
+  @issue_url "https://github.com/gojoychain/explorer/issues/new"
 
   alias BlockScoutWeb.SocialMedia
 
