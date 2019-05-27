@@ -140,7 +140,7 @@ defmodule Explorer.Mixfile do
 
   defp package do
     [
-      maintainers: ["GHU Chain"],
+      maintainers: ["Gojoy Chain"],
       licenses: ["GPL 3.0"],
       links: %{"GitHub" => "https://github.com/ghuchain/ghu-explorer"}
     ]

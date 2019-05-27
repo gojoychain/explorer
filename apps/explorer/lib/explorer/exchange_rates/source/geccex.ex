@@ -19,11 +19,11 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
         [%Token{
             available_supply: to_decimal(0),
             btc_value: to_decimal(0),
-            id: "ghu",
+            id: "joy",
             last_updated: DateTime.utc_now(),
             market_cap_usd: to_decimal(0),
-            name: "GHU",
-            symbol: "GHU",
+            name: "JOY",
+            symbol: "JOY",
             usd_value: to_decimal(data_obj["usd"]),
             volume_24h_usd: to_decimal(0)
           }
@@ -43,7 +43,7 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
 
   @spec body() :: String.t()
   def body do
-    # GHU: Hardcoded GEC token symbol since pulling from GECCEX API.
+    # Hardcoded GEC token symbol since pulling from GECCEX API.
     Jason.encode!(%{
       currency: "GEC"
     })

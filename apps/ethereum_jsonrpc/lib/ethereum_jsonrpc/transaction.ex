@@ -345,7 +345,7 @@ defmodule EthereumJSONRPC.Transaction do
     end
   end
 
-  # GHU: Parses the input field and extracts the token transfer receiver
+  # Parses the input field and extracts the token transfer receiver
   defp token_transfer_receiver_address(input) do
     # Check input field function signature to see if it is a token transfer transaction
     # 0xa9059cbb = transfer(address to, uint256 amount)
