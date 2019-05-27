@@ -27,11 +27,11 @@ config :block_scout_web,
   other_networks: [
     %{
       title: "GHU Mainnet",
-      url: "https://ghuchain.com"
+      url: "https://gojoychain.com"
     },
     %{
       title: "GHU Testnet",
-      url: "https://testnet.ghuchain.com"
+      url: "https://testnet.gojoychain.com"
     },
   ]
 
