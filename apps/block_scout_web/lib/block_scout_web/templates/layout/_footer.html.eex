@@ -36,7 +36,7 @@
 
     <div class="row">
       <div class="col-md-<%= col_size %> footer-list">
-        <h3>GHU Chain</h3>
+        <h3>Gojoy Chain</h3>
         <hr>
         <ul>
           <li><a href="https://ghu.io" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("GHU.io") %></a></li>

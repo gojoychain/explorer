@@ -26,11 +26,11 @@ config :block_scout_web,
   },
   other_networks: [
     %{
-      title: "GHU Mainnet",
+      title: "JOY Mainnet",
       url: "https://gojoychain.com"
     },
     %{
-      title: "GHU Testnet",
+      title: "JOY Testnet",
       url: "https://testnet.gojoychain.com"
     },
   ]
