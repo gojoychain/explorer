@@ -14,12 +14,6 @@
           <a href="https://github.com/gojoychain" rel="noreferrer" target="_blank" class="icon-link" data-toggle="tooltip" data-placement="top" title="<%= gettext("Github") %>">
             <i class="fab fa-github"></i>
           </a>
-          <a href="https://www.facebook.com/Growth-Hack-Union-721440061587911/" rel="noreferrer" target="_blank" class="icon-link" data-toggle="tooltip" data-placement="top" title="<%= gettext("Facebook") %>">
-            <i class="fab fa-facebook"></i>
-          </a>
-          <a href="https://www.linkedin.com/company/ghu" rel="noreferrer" target="_blank" class="icon-link" data-toggle="tooltip" data-placement="top" title="<%= gettext("LinkedIn") %>">
-            <i class="fab fa-linkedin"></i>
-          </a>
         </div>
       </div>
     </div>
@@ -39,9 +33,7 @@
         <h3>Gojoy Chain</h3>
         <hr>
         <ul>
-          <li><a href="https://ghu.io" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("GHU.io") %></a></li>
           <li><a href="https://docs.gojoychain.com" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Documentation") %></a></li>
-          <li><a href="mailto:contact@gojoychain.com" rel="noreferrer" class="footer-link"><%= gettext("Support") %></a></li>
         </ul>
       </div>
       <% main_nets = main_nets() %>
