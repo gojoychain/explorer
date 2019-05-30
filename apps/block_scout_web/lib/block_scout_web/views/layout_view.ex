@@ -24,7 +24,7 @@ defmodule BlockScoutWeb.LayoutView do
   end
 
   def logo do
-    Keyword.get(application_config(), :logo) || "/images/logo_ghu_1000x1000.png"
+    Keyword.get(application_config(), :logo) || "/images/gojoychain_logo.png"
   end
 
   def logo_footer do
