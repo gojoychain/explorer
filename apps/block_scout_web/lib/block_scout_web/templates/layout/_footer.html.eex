@@ -6,15 +6,7 @@
           <img class="footer-logo" src="<%= logo() %>" alt="<%= subnetwork_title() %>" />
         <% end %>
       </div>
-      <div class="col-md-5">
-      </div>
-
-      <div class="col-md-3">
-        <div class="icon-links icon-links-primary footer-social-icons">
-          <a href="https://github.com/gojoychain" rel="noreferrer" target="_blank" class="icon-link" data-toggle="tooltip" data-placement="top" title="<%= gettext("Github") %>">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
+      <div class="col-md-8">
       </div>
     </div>
 
@@ -32,6 +24,7 @@
         <hr>
         <ul>
           <li><a href="https://docs.gojoychain.com" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Documentation") %></a></li>
+          <li><a href="https://github.com/gojoychain" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Github") %></a></li>
         </ul>
       </div>
       <% main_nets = main_nets() %>
