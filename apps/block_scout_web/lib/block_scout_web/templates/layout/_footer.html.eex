@@ -24,9 +24,7 @@
       </div>
     </div>
 
-    <% other_explorers = other_explorers() %>
-
-    <% col_size = if Enum.empty?(other_explorers), do: 4, else: 3 %>
+    <% col_size = 3 %>
 
     <div class="row">
       <div class="col-md-<%= col_size %> footer-list">
@@ -65,17 +63,15 @@
       <% end %>
 
 
-      <%= unless Enum.empty?(other_explorers) do %>
-        <div class="col-md-<%= col_size %> footer-list">
-          <h3><%= gettext("Other Explorers") %></h3>
-          <hr>
-          <ul>
-            <%= for {name, url} <- other_explorers do %>
-              <li><a href="<%= url%>" rel="noreferrer" class="footer-link"> <%= name %> </a></li>
-            <% end %>
-          </ul>
+      <div class="col-md-<%= col_size %> footer-contact">
+        <div class="header"><%= gettext("Contact") %></div>
+        <div class="email">
+          <a href="mailto:contact@gojoychain.com" class="footer-link">contact@gojoychain.com</a>
         </div>
-      <% end %>
+        <div class="header">Gojoy @ Menlo Park</div>
+        2735 Sand Hill Road, Suite 200
+        Menlo Park, CA 94025, USA
+      </div>
     </div>
 
     <% version = version() %>
