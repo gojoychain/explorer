@@ -10,12 +10,6 @@
       </div>
     </div>
 
-    <div class="row footer-info">
-      <div class="col-12">
-        <%= gettext("Blockscout is a tool for inspecting and analyzing EVM based blockchains. Blockchain explorer for Ethereum Networks.") %>
-      </div>
-    </div>
-
     <% col_size = 3 %>
 
     <div class="row">
