@@ -19,17 +19,14 @@ defmodule BlockScoutWeb.LayoutView do
 
   alias BlockScoutWeb.SocialMedia
 
+  @spec network_icon_partial :: any
   def network_icon_partial do
     Keyword.get(application_config(), :network_icon) || "_network_icon.html"
   end
 
+  @spec logo :: any
   def logo do
-    Keyword.get(application_config(), :logo) || "/images/gojoy_chain_logo_v1.png"
-  end
-
-  def logo_footer do
-    Keyword.get(application_config(), :logo_footer) || Keyword.get(application_config(), :logo) ||
-      "/images/blockscout_logo.svg"
+    Keyword.get(application_config(), :logo) || "/images/gojoy_chain_logo_v2.png"
   end
 
   def subnetwork_title do
