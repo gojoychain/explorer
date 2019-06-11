@@ -56,8 +56,8 @@
           <a href="mailto:contact@gojoychain.com" class="footer-link">contact@gojoychain.com</a>
         </div>
         <div class="header">Gojoy @ Menlo Park</div>
-        2735 Sand Hill Road, Suite 200
-        Menlo Park, CA 94025, USA
+        <div>2735 Sand Hill Road, Suite 200</div>
+        <div>Menlo Park, CA 94025, USA</div>
       </div>
     </div>
 
