@@ -104,3 +104,15 @@ $footer-logo-width: auto !default;
     }
   }
 }
+
+.footer-contact {
+  padding-top: 1.4em;
+
+  .header {
+    font-weight: bold;
+  }
+  
+  .email {
+    margin-bottom: 1.25em;
+  }
+}
