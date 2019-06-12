@@ -10,6 +10,10 @@ config :explorer, Explorer.Repo,
 
 config :explorer, Explorer.Tracer, env: "production", disabled?: true
 
+config :explorer, Explorer.ExchangeRates.Source.GECCEX,
+  app_id: System.get_env("GECCEX_APP_ID") || "",
+  code: System.get_env("GECCEX_CODE") || ""
+
 config :logger, :explorer,
   level: :info,
   path: Path.absname("logs/prod/explorer.log"),

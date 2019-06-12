@@ -2,13 +2,21 @@ $footer-padding: 1em;
 $footer-text-color: rgba($white, 0.7);
 
 .footer {
-  font-size: 12px;
+  font-size: 14px;
   background: $primary;
   color: $footer-text-color;
   margin-top: $footer-padding;
   padding: $footer-padding;
   position: relative;
 
+  hr {
+    margin-top: 0;
+    margin-bottom: 1em;
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
 
   @media (max-width: 768px) {
     width: 100%;
@@ -41,16 +49,6 @@ $footer-text-color: rgba($white, 0.7);
 
   h3 {
     margin-bottom: 0;
-    // text-align: center;
-  }
-
-  hr {
-    margin-top: 0;
-    margin-bottom: 1em;
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   ul {
@@ -61,5 +59,17 @@ $footer-text-color: rgba($white, 0.7);
     li {
       padding-bottom: 0.5em;
     }
+  }
+}
+
+.footer-contact {
+  padding-top: 1.4em;
+
+  .header {
+    font-weight: bold;
+  }
+  
+  .email {
+    margin-bottom: 1.5em;
   }
 }
