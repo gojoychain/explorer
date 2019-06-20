@@ -5,12 +5,12 @@ $header-links-color-active: $secondary;
 $header-icon-color: $secondary;
 $header-icon-color-hover: $tertiary;
 $header-icon-border-color-hover: $secondary;
-$header-toggler-icon: "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{transparentize($primary, 0.5)}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E" !default;
+$header-toggler-icon: "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{transparentize($secondary, 0.5)}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E" !default;
 $header-textfield-text-color: $primary;
 $header-textfield-background-color: $secondary;
 $header-textfield-magnifier-color: $primary;
 $header-link-horizontal-padding: 0.71rem;
-$navbar-logo-height: 20px !default;
+$navbar-logo-height: 24px !default;
 $navbar-logo-width: auto !default;
 
 .navbar.navbar-primary {
@@ -105,11 +105,11 @@ $navbar-logo-width: auto !default;
   }
 
   .form-inline {
-    height: 100%;
+    // height: 100%;
   }
 
   .input-group {
-    height: 100%;
+    // height: 100%;
     position: relative;
   }
 
