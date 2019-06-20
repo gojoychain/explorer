@@ -2251,6 +2251,9 @@ defmodule Explorer.Chain do
 
     address_name_opts = [on_conflict: :nothing, conflict_target: [:address_hash, :name]]
 
+    IO.puts "chain.ex update_token"
+    IO.inspect token
+
     insert_result =
       Multi.new()
       |> Multi.run(:token, fn repo, _ ->

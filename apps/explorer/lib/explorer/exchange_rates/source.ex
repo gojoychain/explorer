@@ -12,6 +12,9 @@ defmodule Explorer.ExchangeRates.Source do
   """
   @spec fetch_exchange_rates(module) :: {:ok, [Token.t()]} | {:error, any}
   def fetch_exchange_rates(source \\ exchange_rates_source()) do
+    IO.puts "fetch_exchange_rates source"
+    IO.inspect source
+
     case source do
       CoinMarketCap ->
         fetch_exchange_rates_from_paginable_source(source)
@@ -25,9 +28,18 @@ defmodule Explorer.ExchangeRates.Source do
   defp fetch_exchange_rates_geccex(source) do
     case HTTPoison.post(source.source_url(), source.body(), headers()) do
       {:ok, %Response{body: body, status_code: 200}} ->
+        IO.puts "fetch_exchange_rates_geccex 200"
+        IO.inspect body
         {:ok, source.format_data(body)}
 
+      {:ok, %Response{body: body, status_code: 500}} ->
+        IO.puts "fetch_exchange_rates_geccex 500"
+        IO.inspect body
+        {:error, "Error querying GECCEX"}
+
       {:error, %Error{reason: reason}} ->
+        IO.puts "fetch_exchange_rates_geccex error"
+        IO.inspect reason
         {:error, reason}
     end
   end
