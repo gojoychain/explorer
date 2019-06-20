@@ -1,4 +1,4 @@
-FROM dwalintukan/bionic-elixir-phoenix:1.7.4
+FROM dwalintukan/bionic-elixir-phoenix:1.8.2
 
 RUN apt-get -y install \
     make \
