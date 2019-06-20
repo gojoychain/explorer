@@ -29,6 +29,11 @@ defmodule BlockScoutWeb.LayoutView do
     Keyword.get(application_config(), :logo) || "/images/gojoy_chain_logo_v2.svg"
   end
 
+  @spec logo :: any
+  def logo_footer do
+    Keyword.get(application_config(), :logo_footer) || "/images/gojoy_chain_logo_v2.svg"
+  end
+
   def subnetwork_title do
     Keyword.get(application_config(), :subnetwork) || "JOY Testnet"
   end

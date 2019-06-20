@@ -18,6 +18,7 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
       if Map.has_key?(data_obj, "usd") do
         [%Token{
             available_supply: to_decimal(0),
+            total_supply: to_decimal(0),
             btc_value: to_decimal(0),
             id: "joy",
             last_updated: DateTime.utc_now(),
