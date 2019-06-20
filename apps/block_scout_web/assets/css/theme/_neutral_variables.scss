@@ -8,15 +8,15 @@ $base-border-color: #e2e5ec !default;
 $common-container-margin: 50px !default;
 
 // general
-$primary: #5c34a2;
-$secondary: #87e1a9;
-$tertiary: #bf9cff;
+$primary: #e83528;
+$secondary: #ffffff;
+$tertiary: #23d4e4;
 $additional-font: #fff;
 
 // footer
-$footer-background-color: #3c226a;
-$footer-title-color: #fff;
-$footer-text-color: #bda6e7;
+$footer-background-color: $primary;
+$footer-title-color: $secondary;
+$footer-text-color: $secondary;
 $footer-item-disc-color: $secondary;
 .footer-logo { filter: brightness(0) invert(1); }
 
