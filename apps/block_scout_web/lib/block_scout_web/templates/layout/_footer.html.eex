@@ -16,7 +16,7 @@
         <h3>Gojoy Chain</h3>
         <ul>
           <li><a href="https://docs.gojoychain.com" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Documentation") %></a></li>
-          <li><a href="https:// rel="noreferrer" class="footer-link"><%= gettext("Support") %></a></li>
+          <li><a href="https://github.com/gojoychain" rel="noreferrer" class="footer-link"><%= gettext("Github") %></a></li>
         </ul>
       </div>
       <% main_nets = main_nets(other_networks()) %>
