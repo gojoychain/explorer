@@ -42,7 +42,7 @@ defmodule Explorer.ExchangeRates do
   def handle_info({_ref, {:error, reason}}, state) do
     Logger.warn(fn -> "Failed to get exchange rates with reason '#{reason}'." end)
 
-    fetch_rates()
+    # fetch_rates()
 
     {:noreply, state}
   end

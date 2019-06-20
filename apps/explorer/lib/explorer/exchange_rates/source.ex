@@ -27,6 +27,9 @@ defmodule Explorer.ExchangeRates.Source do
       {:ok, %Response{body: body, status_code: 200}} ->
         {:ok, source.format_data(body)}
 
+      {:ok, %Response{body: _, status_code: 500}} ->
+        {:error, "Error querying GECCEX"}
+
       {:error, %Error{reason: reason}} ->
         {:error, reason}
     end
