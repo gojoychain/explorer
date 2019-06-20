@@ -9,24 +9,14 @@
       </div>
     </div>
 
-    <% other_explorers = other_explorers() %>
-    <% col_size = if Enum.empty?(other_explorers), do: 3, else: 4 %>
+    <% col_size = 3 %>
 
     <div class="row">
-      <div class="col-md-<%= col_size %>">
-        <p class="footer-info-text"><%= gettext("Blockscout is a tool for inspecting and analyzing EVM based blockchains. Blockchain explorer for Ethereum Networks.") %></p>
-        <div class="footer-social-icons">
-          <a href="https://github.com/poanetwork/blockscout" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Github") %>'>
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
-      </div>
-
       <div class="col-md-<%= col_size %> footer-list">
         <h3>Gojoy Chain</h3>
         <ul>
           <li><a href="https://docs.gojoychain.com" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Documentation") %></a></li>
-          <li><a href="mailto:contact@gojoychain.com" rel="noreferrer" class="footer-link"><%= gettext("Support") %></a></li>
+          <li><a href="https:// rel="noreferrer" class="footer-link"><%= gettext("Support") %></a></li>
         </ul>
       </div>
       <% main_nets = main_nets(other_networks()) %>
@@ -55,31 +45,14 @@
         </div>
       <% end %>
 
-      <%= unless Enum.empty?(other_explorers) do %>
-        <div class="col-md-<%= col_size %> footer-list">
-          <h3><%= gettext("Other Explorers") %></h3>
-          <ul>
-            <%= for {name, url} <- other_explorers do %>
-              <li><a href="<%= url%>" rel="noreferrer" class="footer-link"> <%= name %> </a></li>
-            <% end %>
-          </ul>
+      <div class="col-md-<%= col_size %> footer-list">
+        <div class="email">
+          <a href="mailto:contact@gojoychain.com">contact@gojoychain.com</a>
         </div>
-      <% end %>
-
-      </div>
         <div class="header">Gojoy @ Menlo Park</div>
         <div>2735 Sand Hill Road, Suite 200</div>
         <div>Menlo Park, CA 94025, USA</div>
       </div>
     </div>
-
-    <% version = version() %>
-
-    <%= unless ignore_version?(version) do %>
-      <% release_link = release_link(version) %>
-      <div>
-        <%= gettext("Version") %>: <%= release_link %>
-      </div>
-    <% end %>
   </div>
 </footer>
