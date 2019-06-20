@@ -1,5 +1,5 @@
 #!/bin/sh
-# Runs the explorer in dev mode as a local process
+# Runs the commands to drop and recreate the DB
 
 CHAIN=$1
 DB_ACTION=$2
@@ -44,5 +44,5 @@ else
     exit 2
 fi
 
-# Run local server
-mix phx.server
+# Drop and recreate DB
+mix do ecto.drop, ecto.create, ecto.migrate

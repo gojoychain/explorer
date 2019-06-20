@@ -10,7 +10,7 @@ defmodule Explorer.ExchangeRates do
   require Logger
 
   alias Explorer.Chain.Events.Publisher
-  alias Explorer.ExchangeRates.{Token, Source}
+  alias Explorer.ExchangeRates.{Token}
 
   @interval :timer.minutes(5)
   @table_name :exchange_rates
@@ -19,7 +19,7 @@ defmodule Explorer.ExchangeRates do
   def handle_info(:update, state) do
     Logger.debug(fn -> "Updating cached exchange rates" end)
 
-    fetch_rates()
+    # fetch_rates()
 
     {:noreply, state}
   end
@@ -42,7 +42,7 @@ defmodule Explorer.ExchangeRates do
   def handle_info({_ref, {:error, reason}}, state) do
     Logger.warn(fn -> "Failed to get exchange rates with reason '#{reason}'." end)
 
-    fetch_rates()
+    # fetch_rates()
 
     {:noreply, state}
   end
@@ -114,12 +114,12 @@ defmodule Explorer.ExchangeRates do
     Application.get_env(:explorer, __MODULE__, [])[key]
   end
 
-  @spec fetch_rates :: Task.t()
-  defp fetch_rates do
-    Task.Supervisor.async_nolink(Explorer.MarketTaskSupervisor, fn ->
-      Source.fetch_exchange_rates()
-    end)
-  end
+  # @spec fetch_rates :: Task.t()
+  # defp fetch_rates do
+  #   Task.Supervisor.async_nolink(Explorer.MarketTaskSupervisor, fn ->
+  #     Source.fetch_exchange_rates()
+  #   end)
+  # end
 
   defp list_from_store(:ets) do
     table_name()
