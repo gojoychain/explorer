@@ -29,7 +29,7 @@ defmodule BlockScoutWeb.LayoutView do
     Keyword.get(application_config(), :logo) || "/images/gojoy_chain_logo_v2.svg"
   end
 
-  @spec logo :: any
+  @spec logo_footer :: any
   def logo_footer do
     Keyword.get(application_config(), :logo_footer) || "/images/gojoy_chain_logo_v2.svg"
   end
@@ -104,7 +104,7 @@ defmodule BlockScoutWeb.LayoutView do
           nil
 
         release_link_env_var == "" || release_link_env_var == nil ->
-          "https://github.com/poanetwork/blockscout/releases/tag/" <> version
+          "https://github.com/gojoychain/explorer/releases/tag/" <> version
 
         true ->
           release_link_env_var

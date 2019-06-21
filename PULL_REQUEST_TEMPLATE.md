@@ -1,9 +1,3 @@
-*[GitHub keywords to close any associated issues](https://blog.github.com/2013-05-14-closing-issues-via-pull-requests/)*
-
-## Motivation
-
-*Why should we merge these changes.  If using GitHub keywords to close [issues](https://github.com/poanetwork/blockscout/issues), this is optional as the motivation can be read on the issue page.*
-
 ## Changelog
 
 ### Enhancements
