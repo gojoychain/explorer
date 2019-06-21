@@ -1,9 +1,9 @@
 #!/bin/sh
-# Runs the commands to drop and recreate the DB
+# Runs the explorer in dev mode as a local process
 
 CHAIN=$1
-DB_ACTION=$2
-MESSAGE="$ ./run.sh [mainnet/testnet/local]"
+ACTION=$2
+MESSAGE="$ ./run.sh [mainnet/testnet/local] [create/drop/run]"
 
 # Check for chain var
 if [ -z "${CHAIN}" ]
@@ -26,5 +26,17 @@ else
     exit 2
 fi
 
-# Drop and recreate DB
-mix do ecto.drop, ecto.create, ecto.migrate
+if [ "$ACTION" = "create" ]; then
+    # Create db
+    mix ecto.create && mix ecto.migrate
+elif [ "$ACTION" = "drop" ]; then
+    # Drop and recreate DB
+    mix do ecto.drop, ecto.create, ecto.migrate
+elif [ "$ACTION" = "run" ]; then
+    # Run local server
+    mix phx.server
+else
+    echo "invalid action"
+    echo ${MESSAGE}
+    exit 2
+fi
