@@ -17,15 +17,15 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
 
       if Map.has_key?(data_obj, "usd") do
         [%Token{
-            available_supply: to_decimal(0),
-            total_supply: to_decimal(0),
-            btc_value: to_decimal(0),
             id: "joy",
-            last_updated: DateTime.utc_now(),
-            market_cap_usd: to_decimal(0),
             name: "JOY",
             symbol: "JOY",
+            available_supply: to_decimal(0),
+            total_supply: to_decimal(0),
+            last_updated: DateTime.utc_now(),
             usd_value: to_decimal(data_obj["usd"]),
+            btc_value: to_decimal(0),
+            market_cap_usd: to_decimal(0),
             volume_24h_usd: to_decimal(0)
           }
         ]
@@ -46,7 +46,7 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
   def body do
     # Hardcoded GEC token symbol since pulling from GECCEX API.
     Jason.encode!(%{
-      currency: "GEC"
+      currency: "JOY"
     })
   end
 
