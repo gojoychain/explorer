@@ -1,9 +1,9 @@
 #!/bin/sh
-# Runs the explorer in dev mode as a local process
+# Runs the explorer locally.
 
 CHAIN=$1
 ACTION=$2
-MESSAGE="$ ./run.sh [mainnet/testnet/local] [create/drop/run]"
+MESSAGE="$ ./run.sh [mainnet/testnet/local] [create/drop/start]"
 
 # Check for chain var
 if [ -z "${CHAIN}" ]
@@ -27,13 +27,13 @@ else
 fi
 
 if [ "$ACTION" = "create" ]; then
-    # Create db
+    # Create and migrate DB
     mix ecto.create && mix ecto.migrate
 elif [ "$ACTION" = "drop" ]; then
-    # Drop and recreate DB
+    # Drop, create, and migrate DB
     mix do ecto.drop, ecto.create, ecto.migrate
-elif [ "$ACTION" = "run" ]; then
-    # Run local server
+elif [ "$ACTION" = "start" ]; then
+    # Run server
     mix phx.server
 else
     echo "invalid action"
