@@ -20,7 +20,7 @@ services:
         SECRET_KEY_BASE: ${SECRET_KEY_BASE}
         GECCEX_APP_ID: ${GECCEX_APP_ID}
         GECCEX_CODE: ${GECCEX_CODE}
-    restart: on-failure
+    restart: always
     network_mode: "host"
     ports:
       - 4000
