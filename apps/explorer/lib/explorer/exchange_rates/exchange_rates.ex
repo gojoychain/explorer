@@ -94,7 +94,7 @@ defmodule Explorer.ExchangeRates do
     # TODO: remove hardcoded exchange rate for JOY
     case symbol do
       "JOY" ->
-        Token.from_tuple({"JOY", "JOY", "JOY Token", 0, 0, 3, 0, 0, 0, DateTime.utc_now()})
+        Token.from_tuple({"JOY", "JOY", "JOY Token", 0, 0, 6, 0, 0, 0, DateTime.utc_now()})
       _ ->
         if store() == :ets && enabled?() do
           case :ets.lookup(table_name(), symbol) do
