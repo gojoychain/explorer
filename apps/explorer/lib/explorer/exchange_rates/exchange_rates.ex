@@ -42,7 +42,8 @@ defmodule Explorer.ExchangeRates do
   def handle_info({_ref, {:error, reason}}, state) do
     Logger.warn(fn -> "Failed to get exchange rates with reason '#{reason}'." end)
 
-    fetch_rates()
+    # Disabled refetching right away so it doesn't spam the server
+    # fetch_rates()
 
     {:noreply, state}
   end
@@ -90,11 +91,17 @@ defmodule Explorer.ExchangeRates do
   """
   @spec lookup(String.t()) :: Token.t() | nil
   def lookup(symbol) do
-    if store() == :ets && enabled?() do
-      case :ets.lookup(table_name(), symbol) do
-        [tuple | _] when is_tuple(tuple) -> Token.from_tuple(tuple)
-        _ -> nil
-      end
+    # TODO: remove hardcoded exchange rate for JOY
+    case symbol do
+      "JOY" ->
+        Token.from_tuple({"JOY", "JOY", "JOY Token", 0, 0, 0, 0, 0, 0, DateTime.utc_now()})
+      _ ->
+        if store() == :ets && enabled?() do
+          case :ets.lookup(table_name(), symbol) do
+            [tuple | _] when is_tuple(tuple) -> Token.from_tuple(tuple)
+            _ -> nil
+          end
+        end
     end
   end
 
