@@ -31,15 +31,7 @@
             <%= Cldr.Number.to_string!(@address_count, format: "#,###") %>
           </span>
         </div>
-        <div class="dashboard-banner-network-stats-item">
-          <span class="dashboard-banner-network-stats-label">
-            <%= gettext "Price" %>
-          </span>
-          <span class="dashboard-banner-network-stats-value" data-selector="coin-price">
-            <span class="dashboard-banner-chart-legend-value" data-selector="exchange-rate" data-wei-value="<%= Explorer.Chain.Wei.from(Decimal.new(1), :ether).value %>" data-usd-exchange-rate="<%= @exchange_rate.usd_value %>">
-            </span>
-          </span>
-        </div>
+        <%# TODO: insert price network stat here %>
       </div>
     </div>
   </div>
