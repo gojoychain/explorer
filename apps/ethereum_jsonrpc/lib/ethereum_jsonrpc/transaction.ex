@@ -10,6 +10,13 @@ defmodule EthereumJSONRPC.Transaction do
 
   import EthereumJSONRPC, only: [quantity_to_integer: 1]
 
+  import Explorer.Chain, only: [
+    string_to_address_hash: 1,
+    find_or_insert_address_from_hash: 1,
+  ]
+
+  alias Explorer.Chain.Hash
+
   alias EthereumJSONRPC
 
   @type elixir :: %{
@@ -351,7 +358,11 @@ defmodule EthereumJSONRPC.Transaction do
     # 0xa9059cbb = transfer(address to, uint256 amount)
     # 0xbe45fd62 = transfer(address to, uint256 amount, bytes data)
     if String.length(input) == 138 && (String.starts_with?(input, "0xa9059cbb") || String.starts_with?(input, "0xbe45fd62")) do
-      "0x#{String.slice(input, 34, 40)}"
+      parsed = "0x#{String.slice(input, 34, 40)}"
+      with {:ok, addr_hash} <- string_to_address_hash(parsed),
+           {:ok, addr} <- find_or_insert_address_from_hash(addr_hash) do
+        Hash.to_string(addr.hash)
+      end
     else
       nil
     end
