@@ -477,10 +477,6 @@ defmodule Explorer.Chain.Transaction do
 
   """
   def changeset(%__MODULE__{} = transaction, attrs \\ %{}) do
-    IO.puts "transaction.ex explorer changeset"
-    IO.inspect transaction
-    IO.inspect attrs
-
     transaction
     |> cast(attrs, @required_attrs ++ @optional_attrs)
     |> validate_required(@required_attrs)
@@ -701,7 +697,11 @@ defmodule Explorer.Chain.Transaction do
       with {:ok, addr_hash} <- Chain.string_to_address_hash(parsed),
            {:ok, addr} <- Chain.find_or_insert_address_from_hash(addr_hash) do
         put_change(changeset, :token_transfer_receiver_address_hash, Hash.to_string(addr.hash))
+      else
+        _ -> changeset
       end
+    else
+      changeset
     end
   end
 
