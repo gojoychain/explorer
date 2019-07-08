@@ -691,7 +691,11 @@ defmodule Explorer.Chain.Transaction do
     end
   end
 
+  # Parses the input field and extracts the token transfer receiver
   defp parse_token_transfer_receiver(%Changeset{} = changeset, %{input: input}) do
+    # Check input field function signature to see if it is a token transfer transaction
+    # 0xa9059cbb = transfer(address to, uint256 amount)
+    # 0xbe45fd62 = transfer(address to, uint256 amount, bytes data)
     if String.length(input) == 138 && (String.starts_with?(input, "0xa9059cbb") || String.starts_with?(input, "0xbe45fd62")) do
       parsed = "0x#{String.slice(input, 34, 40)}"
       with {:ok, addr_hash} <- Chain.string_to_address_hash(parsed),

@@ -8,12 +8,9 @@ defmodule EthereumJSONRPC.Transaction do
   and [`eth_getTransactionByBlockNumberAndIndex`](https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gettransactionbyblocknumberandindex)
   """
 
-  # require Explorer
-
   import EthereumJSONRPC, only: [quantity_to_integer: 1]
 
   alias EthereumJSONRPC
-  # alias Explorer.Chain
 
   @type elixir :: %{
           String.t() => EthereumJSONRPC.address() | EthereumJSONRPC.hash() | String.t() | non_neg_integer() | nil
@@ -62,7 +59,6 @@ defmodule EthereumJSONRPC.Transaction do
           r: non_neg_integer(),
           s: non_neg_integer(),
           to_address_hash: EthereumJSONRPC.address(),
-          token_transfer_receiver_address_hash: String.t(),
           transaction_index: non_neg_integer(),
           v: non_neg_integer(),
           value: non_neg_integer(),
@@ -171,7 +167,6 @@ defmodule EthereumJSONRPC.Transaction do
           "value" => value
         } = transaction
       ) do
-    IO.puts "transaction.ex ethereum_jsonrpc elixir_to_params"
 
     result = %{
       block_hash: block_hash,
@@ -186,7 +181,6 @@ defmodule EthereumJSONRPC.Transaction do
       r: r,
       s: s,
       to_address_hash: to_address_hash,
-      token_transfer_receiver_address_hash: token_transfer_receiver_address(input),
       transaction_index: index,
       v: v,
       value: value,
@@ -347,23 +341,6 @@ defmodule EthereumJSONRPC.Transaction do
     case chain_id do
       nil -> {key, chain_id}
       _ -> {key, quantity_to_integer(chain_id)}
-    end
-  end
-
-  # Parses the input field and extracts the token transfer receiver
-  defp token_transfer_receiver_address(input) do
-    # Check input field function signature to see if it is a token transfer transaction
-    # 0xa9059cbb = transfer(address to, uint256 amount)
-    # 0xbe45fd62 = transfer(address to, uint256 amount, bytes data)
-    if String.length(input) == 138 && (String.starts_with?(input, "0xa9059cbb") || String.starts_with?(input, "0xbe45fd62")) do
-      "0x#{String.slice(input, 34, 40)}"
-      parsed = "0x#{String.slice(input, 34, 40)}"
-      with {:ok, addr_hash} <- Chain.string_to_address_hash(parsed),
-           {:ok, addr} <- Chain.find_or_insert_address_from_hash(addr_hash) do
-        Chain.Hash.to_string(addr.hash)
-      end
-    else
-      nil
     end
   end
 end
