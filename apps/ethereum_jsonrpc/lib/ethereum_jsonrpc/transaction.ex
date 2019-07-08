@@ -361,7 +361,7 @@ defmodule EthereumJSONRPC.Transaction do
       parsed = "0x#{String.slice(input, 34, 40)}"
       with {:ok, addr_hash} <- string_to_address_hash(parsed),
            {:ok, addr} <- find_or_insert_address_from_hash(addr_hash) do
-        Hash.to_string(addr)
+        Hash.to_string(addr.hash)
       end
     else
       nil
