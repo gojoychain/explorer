@@ -8,12 +8,12 @@ defmodule EthereumJSONRPC.Transaction do
   and [`eth_getTransactionByBlockNumberAndIndex`](https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gettransactionbyblocknumberandindex)
   """
 
-  require Explorer.Chain
+  # require Explorer
 
   import EthereumJSONRPC, only: [quantity_to_integer: 1]
 
   alias EthereumJSONRPC
-  alias Explorer.Chain
+  # alias Explorer.Chain
 
   @type elixir :: %{
           String.t() => EthereumJSONRPC.address() | EthereumJSONRPC.hash() | String.t() | non_neg_integer() | nil
@@ -171,6 +171,8 @@ defmodule EthereumJSONRPC.Transaction do
           "value" => value
         } = transaction
       ) do
+    IO.puts "transaction.ex ethereum_jsonrpc elixir_to_params"
+
     result = %{
       block_hash: block_hash,
       block_number: block_number,
@@ -354,6 +356,7 @@ defmodule EthereumJSONRPC.Transaction do
     # 0xa9059cbb = transfer(address to, uint256 amount)
     # 0xbe45fd62 = transfer(address to, uint256 amount, bytes data)
     if String.length(input) == 138 && (String.starts_with?(input, "0xa9059cbb") || String.starts_with?(input, "0xbe45fd62")) do
+      "0x#{String.slice(input, 34, 40)}"
       parsed = "0x#{String.slice(input, 34, 40)}"
       with {:ok, addr_hash} <- Chain.string_to_address_hash(parsed),
            {:ok, addr} <- Chain.find_or_insert_address_from_hash(addr_hash) do

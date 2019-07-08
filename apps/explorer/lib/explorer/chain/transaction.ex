@@ -11,6 +11,7 @@ defmodule Explorer.Chain.Transaction do
 
   alias Ecto.Changeset
 
+  alias Explorer.Chain
   alias Explorer.Chain.{
     Address,
     Block,
@@ -476,12 +477,17 @@ defmodule Explorer.Chain.Transaction do
 
   """
   def changeset(%__MODULE__{} = transaction, attrs \\ %{}) do
+    IO.puts "transaction.ex explorer changeset"
+    IO.inspect transaction
+    IO.inspect attrs
+
     transaction
     |> cast(attrs, @required_attrs ++ @optional_attrs)
     |> validate_required(@required_attrs)
     |> validate_collated_or_pending()
     |> validate_error()
     |> validate_status()
+    |> parse_token_transfer_receiver(attrs)
     |> check_pending()
     |> check_collated()
     |> check_error()
@@ -682,6 +688,16 @@ defmodule Explorer.Chain.Transaction do
       Changeset.add_error(changeset, :status, @status_message)
     else
       changeset
+    end
+  end
+
+  defp parse_token_transfer_receiver(%Changeset{} = changeset, %{input: input}) do
+    if String.length(input) == 138 && (String.starts_with?(input, "0xa9059cbb") || String.starts_with?(input, "0xbe45fd62")) do
+      parsed = "0x#{String.slice(input, 34, 40)}"
+      with {:ok, addr_hash} <- Chain.string_to_address_hash(parsed),
+           {:ok, addr} <- Chain.find_or_insert_address_from_hash(addr_hash) do
+        put_change(changeset, :token_transfer_receiver_address_hash, Hash.to_string(addr.hash))
+      end
     end
   end
 
