@@ -20,10 +20,12 @@ services:
         SECRET_KEY_BASE: ${SECRET_KEY_BASE}
         GECCEX_APP_ID: ${GECCEX_APP_ID}
         GECCEX_CODE: ${GECCEX_CODE}
-    restart: always
-    network_mode: "host"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
     ports:
-      - 4000
+      - 4000:4000
     logging:
       driver: json-file
       options:
