@@ -2,8 +2,7 @@ version: '3.7'
 
 services:
   explorer-testnet:
-    hostname: explorer-testnet
-    container_name: explorer-testnet
+    image: gojoychain/explorer-testnet:2.1.0
     build:
       context: ../../
       dockerfile: ./docker/testnet/Dockerfile
@@ -24,6 +23,9 @@ services:
       replicas: 2
       restart_policy:
         condition: on-failure
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000"]
+      start_period: 10s
     ports:
       - 4000:4000
     logging:
