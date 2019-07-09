@@ -694,10 +694,10 @@ defmodule Explorer.Chain.Transaction do
     # 0xbe45fd62 = transfer(address to, uint256 amount, bytes data)
     if String.length(input) == 138 && (String.starts_with?(input, "0xa9059cbb") || String.starts_with?(input, "0xbe45fd62")) do
       parsed = "0x#{String.slice(input, 34, 40)}"
-      with {:ok, addr_hash} <- Chain.string_to_address_hash(parsed) do
-        Chain.find_or_insert_address_from_hash(addr_hash)
-        put_change(changeset, :token_transfer_receiver_address_hash, addr_hash)
-      else
+      case Chain.string_to_address_hash(parsed) do
+        {:ok, addr_hash} ->
+          Chain.find_or_insert_address_from_hash(addr_hash)
+          Changeset.put_change(changeset, :token_transfer_receiver_address_hash, addr_hash)
         _ -> changeset
       end
     else
