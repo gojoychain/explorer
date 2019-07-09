@@ -10,13 +10,6 @@ defmodule EthereumJSONRPC.Transaction do
 
   import EthereumJSONRPC, only: [quantity_to_integer: 1]
 
-  import Explorer.Chain, only: [
-    string_to_address_hash: 1,
-    find_or_insert_address_from_hash: 1,
-  ]
-
-  alias Explorer.Chain
-
   alias EthereumJSONRPC
 
   @type elixir :: %{
@@ -66,7 +59,6 @@ defmodule EthereumJSONRPC.Transaction do
           r: non_neg_integer(),
           s: non_neg_integer(),
           to_address_hash: EthereumJSONRPC.address(),
-          token_transfer_receiver_address_hash: String.t(),
           transaction_index: non_neg_integer(),
           v: non_neg_integer(),
           value: non_neg_integer(),
@@ -175,6 +167,7 @@ defmodule EthereumJSONRPC.Transaction do
           "value" => value
         } = transaction
       ) do
+
     result = %{
       block_hash: block_hash,
       block_number: block_number,
@@ -188,7 +181,6 @@ defmodule EthereumJSONRPC.Transaction do
       r: r,
       s: s,
       to_address_hash: to_address_hash,
-      token_transfer_receiver_address_hash: token_transfer_receiver_address(input),
       transaction_index: index,
       v: v,
       value: value,
@@ -349,22 +341,6 @@ defmodule EthereumJSONRPC.Transaction do
     case chain_id do
       nil -> {key, chain_id}
       _ -> {key, quantity_to_integer(chain_id)}
-    end
-  end
-
-  # Parses the input field and extracts the token transfer receiver
-  defp token_transfer_receiver_address(input) do
-    # Check input field function signature to see if it is a token transfer transaction
-    # 0xa9059cbb = transfer(address to, uint256 amount)
-    # 0xbe45fd62 = transfer(address to, uint256 amount, bytes data)
-    if String.length(input) == 138 && (String.starts_with?(input, "0xa9059cbb") || String.starts_with?(input, "0xbe45fd62")) do
-      parsed = "0x#{String.slice(input, 34, 40)}"
-      with {:ok, addr_hash} <- string_to_address_hash(parsed),
-           {:ok, addr} <- find_or_insert_address_from_hash(addr_hash) do
-        Chain.Hash.to_string(addr.hash)
-      end
-    else
-      nil
     end
   end
 end
