@@ -21,7 +21,9 @@ defmodule BlockScoutWeb.API.RPC.StatsController do
     end
   end
 
+  @spec ethsupply(Plug.Conn.t(), any) :: Plug.Conn.t()
   def ethsupply(conn, _params) do
+    IO.inspect Chain.total_supply()
     wei_total_supply =
       Chain.total_supply()
       |> Decimal.new()
