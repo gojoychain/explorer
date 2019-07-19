@@ -9,6 +9,8 @@ defmodule Explorer.Chain.Supply.GojoyChain do
     hashes_to_addresses: 1
   ]
 
+  alias Explorer.Chain.Wei
+
   @total_supply 1_000_000_000
   @master_address "0xd0B9f1f7742429A0768f561aeaBEc4a752578167"
 
@@ -17,9 +19,14 @@ defmodule Explorer.Chain.Supply.GojoyChain do
     with {:ok, address_hash} <- string_to_address_hash(@master_address) do
       addresses = hashes_to_addresses([address_hash])
       address = List.first(addresses)
-      IO.inspect address
-      if address.fetched_coin_balance && address.fetched_coin_balance.value do
-        @total_supply - address.fetched_coin_balance.value
+      if address.fetched_coin_balance do
+        @total_supply
+        |> Decimal.new()
+        |> Wei.from(:ether)
+        |> Wei.sub(address.fetched_coin_balance)
+        |> Wei.to(:ether)
+        |> Decimal.round()
+        |> Decimal.to_integer()
       else
         0
       end
