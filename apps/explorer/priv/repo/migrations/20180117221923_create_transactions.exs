@@ -50,7 +50,11 @@ defmodule Explorer.Repo.Migrations.CreateTransactions do
       add(:created_contract_address_hash, references(:addresses, column: :hash, type: :bytea), null: true)
 
       # `null` when transaction is not a token transfer
-      add(:token_transfer_receiver_address_hash, references(:addresses, column: :hash, on_delete: :delete_all, type: :bytea), null: true)
+      add(
+        :token_transfer_receiver_address_hash,
+        references(:addresses, column: :hash, on_delete: :delete_all, type: :bytea),
+        null: true
+      )
     end
 
     create(

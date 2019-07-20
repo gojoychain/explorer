@@ -15,8 +15,10 @@ defmodule Explorer.ExchangeRates.Source do
     case source do
       CoinMarketCap ->
         fetch_exchange_rates_from_paginable_source(source)
+
       CoinGecko ->
         fetch_exchange_rates_request(source)
+
       GECCEX ->
         fetch_exchange_rates_geccex(source)
     end

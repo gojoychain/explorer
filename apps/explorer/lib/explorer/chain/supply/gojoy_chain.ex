@@ -4,10 +4,11 @@ defmodule Explorer.Chain.Supply.GojoyChain do
   """
   use Explorer.Chain.Supply
 
-  import Explorer.Chain, only: [
-    string_to_address_hash: 1,
-    hashes_to_addresses: 1
-  ]
+  import Explorer.Chain,
+    only: [
+      string_to_address_hash: 1,
+      hashes_to_addresses: 1
+    ]
 
   alias Explorer.Chain.Wei
 
@@ -19,6 +20,7 @@ defmodule Explorer.Chain.Supply.GojoyChain do
     with {:ok, address_hash} <- string_to_address_hash(@master_address) do
       addresses = hashes_to_addresses([address_hash])
       address = List.first(addresses)
+
       if address.fetched_coin_balance do
         @total_supply
         |> Decimal.new()

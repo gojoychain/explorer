@@ -30,6 +30,7 @@ defmodule BlockScoutWeb.API.RPC.AddressController do
       case list_tokens(address_hash) do
         {:ok, token_list} ->
           render(conn, :balanceaggregate, %{address: address, tokens: token_list})
+
         {:error, :not_found} ->
           render(conn, :balanceaggregate, %{address: address, tokens: []})
       end

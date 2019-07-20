@@ -66,7 +66,11 @@ defmodule BlockScoutWeb.API.RPC.TransactionView do
       "to" => "#{transaction.to_address_hash}",
       "value" => "#{transaction.value.value}",
       "input" => "#{transaction.input}",
-      "tokenTransferReceiver" => if(transaction.token_transfer_receiver_address_hash != nil, do: "#{transaction.token_transfer_receiver_address_hash}", else: nil),
+      "tokenTransferReceiver" =>
+        if(transaction.token_transfer_receiver_address_hash != nil,
+          do: "#{transaction.token_transfer_receiver_address_hash}",
+          else: nil
+        ),
       "gasLimit" => "#{transaction.gas}",
       "gasUsed" => "#{transaction.gas_used}",
       "logs" => Enum.map(logs, &prepare_log/1),

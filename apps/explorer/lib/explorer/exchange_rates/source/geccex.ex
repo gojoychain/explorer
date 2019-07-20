@@ -12,11 +12,13 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
   @impl Source
   def format_data(data) do
     json = decode_json(data)
+
     if Map.has_key?(json, "data") do
       data_obj = json["data"]
 
       if Map.has_key?(data_obj, "usd") do
-        [%Token{
+        [
+          %Token{
             id: "joy",
             name: "JOY",
             symbol: "JOY",
@@ -29,9 +31,11 @@ defmodule Explorer.ExchangeRates.Source.GECCEX do
             volume_24h_usd: to_decimal(0)
           }
         ]
-      else []
+      else
+        []
       end
-    else []
+    else
+      []
     end
   end
 
