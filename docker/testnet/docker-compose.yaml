@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   explorer-testnet:
-    image: gojoychain/explorer-testnet:2.1.0
+    image: gojoychain/explorer-testnet:2.2.0
     build:
       context: ../../
       dockerfile: ./docker/testnet/Dockerfile
