@@ -21,9 +21,7 @@ defmodule BlockScoutWeb.API.RPC.StatsController do
     end
   end
 
-  @spec ethsupply(Plug.Conn.t(), any) :: Plug.Conn.t()
   def ethsupply(conn, _params) do
-    IO.inspect Chain.total_supply()
     wei_total_supply =
       Chain.total_supply()
       |> Decimal.new()
@@ -32,6 +30,17 @@ defmodule BlockScoutWeb.API.RPC.StatsController do
       |> Decimal.to_string()
 
     render(conn, "ethsupply.json", total_supply: wei_total_supply)
+  end
+
+  def circulatingsupply(conn, _params) do
+    wei_circulating_supply =
+      Chain.circulating_supply()
+      |> Decimal.new()
+      |> Wei.from(:ether)
+      |> Wei.to(:wei)
+      |> Decimal.to_string()
+
+    render(conn, "circulatingsupply.json", circulating_supply: wei_circulating_supply)
   end
 
   def ethprice(conn, _params) do
