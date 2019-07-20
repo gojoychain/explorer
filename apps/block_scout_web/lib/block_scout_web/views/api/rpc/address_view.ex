@@ -14,6 +14,7 @@ defmodule BlockScoutWeb.API.RPC.AddressView do
       native_token_balance: "#{address.fetched_coin_balance.value}",
       tokens: Enum.map(tokens, &prepare_token/1)
     }
+
     RPCView.render("show.json", data: data)
   end
 
@@ -100,7 +101,11 @@ defmodule BlockScoutWeb.API.RPC.AddressView do
       "cumulativeGasUsed" => "#{transaction.cumulative_gas_used}",
       "gasUsed" => "#{transaction.gas_used}",
       "confirmations" => "#{transaction.confirmations}",
-      "tokenTransferReceiver" => if(transaction.token_transfer_receiver_address_hash != nil, do: "#{transaction.token_transfer_receiver_address_hash}", else: nil),
+      "tokenTransferReceiver" =>
+        if(transaction.token_transfer_receiver_address_hash != nil,
+          do: "#{transaction.token_transfer_receiver_address_hash}",
+          else: nil
+        )
     }
   end
 

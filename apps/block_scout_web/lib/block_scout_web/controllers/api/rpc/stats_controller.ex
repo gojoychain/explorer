@@ -32,6 +32,17 @@ defmodule BlockScoutWeb.API.RPC.StatsController do
     render(conn, "ethsupply.json", total_supply: wei_total_supply)
   end
 
+  def circulatingsupply(conn, _params) do
+    wei_circulating_supply =
+      Chain.circulating_supply()
+      |> Decimal.new()
+      |> Wei.from(:ether)
+      |> Wei.to(:wei)
+      |> Decimal.to_string()
+
+    render(conn, "circulatingsupply.json", circulating_supply: wei_circulating_supply)
+  end
+
   def ethprice(conn, _params) do
     symbol = Application.get_env(:explorer, :coin)
     rates = ExchangeRates.lookup(symbol)

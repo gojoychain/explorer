@@ -61,7 +61,7 @@ defmodule EthereumJSONRPC.Transaction do
           to_address_hash: EthereumJSONRPC.address(),
           transaction_index: non_neg_integer(),
           v: non_neg_integer(),
-          value: non_neg_integer(),
+          value: non_neg_integer()
         }
 
   @doc """
@@ -167,7 +167,6 @@ defmodule EthereumJSONRPC.Transaction do
           "value" => value
         } = transaction
       ) do
-
     result = %{
       block_hash: block_hash,
       block_number: block_number,
@@ -183,7 +182,7 @@ defmodule EthereumJSONRPC.Transaction do
       to_address_hash: to_address_hash,
       transaction_index: index,
       v: v,
-      value: value,
+      value: value
     }
 
     if transaction["creates"] do

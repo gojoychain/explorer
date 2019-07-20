@@ -14,7 +14,7 @@ defmodule BlockScoutWeb.LayoutView do
       title: "JOY Testnet",
       url: "https://testnet.gojoychain.com",
       test_net?: true
-    },
+    }
   ]
 
   alias BlockScoutWeb.SocialMedia

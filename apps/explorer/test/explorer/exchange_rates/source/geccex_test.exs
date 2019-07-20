@@ -35,6 +35,7 @@ defmodule Explorer.ExchangeRates.Source.GECCEXTest do
           volume_24h_usd: Decimal.new("0")
         }
       ]
+
       assert expected == formatted
     end
 
@@ -48,6 +49,7 @@ defmodule Explorer.ExchangeRates.Source.GECCEXTest do
         "data": {}
       }
       """
+
       assert [] = GECCEX.format_data(bad_data)
     end
   end

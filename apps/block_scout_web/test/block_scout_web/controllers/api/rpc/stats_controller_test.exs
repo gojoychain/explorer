@@ -99,6 +99,24 @@ defmodule BlockScoutWeb.API.RPC.StatsControllerTest do
     end
   end
 
+  describe "circulatingsupply" do
+    test "returns circulating supply", %{conn: conn} do
+      params = %{
+        "module" => "stats",
+        "action" => "circulatingsupply"
+      }
+
+      assert response =
+               conn
+               |> get("/api", params)
+               |> json_response(200)
+
+      assert response["result"] == "252460800000000000000000000"
+      assert response["status"] == "1"
+      assert response["message"] == "OK"
+    end
+  end
+
   describe "ethprice" do
     setup :set_mox_global
 
