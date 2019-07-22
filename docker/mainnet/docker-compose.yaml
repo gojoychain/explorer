@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   explorer-mainnet:
-    image: gojoychain/explorer-mainnet:2.2.0
+    image: gojoychain/explorer-mainnet:2.3.0
     build:
       context: ../../
       dockerfile: ./docker/mainnet/Dockerfile
