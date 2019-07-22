@@ -22,7 +22,7 @@ defmodule BlockScoutWeb.Router do
     pipe_through(:api)
 
     get("/supply", SupplyController, :supply)
-    get("/circulatingsupply", CirculatingSupplyController, :supply)
+    get("/circulatingsupply", CirculatingSupplyController, :circulating_supply)
 
     resources("/decompiled_smart_contract", DecompiledSmartContractController, only: [:create])
     resources("/verified_smart_contracts", VerifiedSmartContractController, only: [:create])

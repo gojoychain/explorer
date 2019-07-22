@@ -3,9 +3,9 @@ defmodule BlockScoutWeb.API.V1.CirculatingSupplyController do
 
   alias Explorer.Chain
 
-  def supply(conn, _) do
+  def circulating_supply(conn, _) do
     circulating = Chain.circulating_supply()
 
-    render(conn, :supply, circulating: circulating)
+    render(conn, :circulatingsupply, circulating: circulating)
   end
 end
