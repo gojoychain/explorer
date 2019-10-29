@@ -44,7 +44,7 @@ Follow steps in [Manual Deployment](https://docs.blockscout.com/for-developers/m
 
 ### Running Docker
 
-To run the Dockerized explorer you can get the image from `https://hub.docker.com/r/gojoychain/explorer`. You will need to add [environment variables](#environment) while running `docker run`.
+To run the Dockerized explorer you can get the image from [https://hub.docker.com/r/gojoychain/explorer](https://hub.docker.com/r/gojoychain/explorer). You will need to add [environment variables](#environment) while running `docker run`.
 
 ## Deploy
 
