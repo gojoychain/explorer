@@ -1,0 +1,27 @@
+{
+  "name": "explorer",
+  "version": "2.3.1",
+  "description": "Gojoy Chain explorer",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gojoychain/explorer.git"
+  },
+  "keywords": [
+    "gojoy",
+    "chain",
+    "explorer"
+  ],
+  "author": "Deric Walintukan <deric@nakachain.org>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gojoychain/explorer/issues"
+  },
+  "homepage": "https://github.com/gojoychain/explorer#readme"
+}
