@@ -46,6 +46,17 @@ Follow steps in [Manual Deployment](https://docs.blockscout.com/for-developers/m
 
 To run the Dockerized explorer you can get the image from [https://hub.docker.com/r/gojoychain/explorer](https://hub.docker.com/r/gojoychain/explorer). You will need to add [environment variables](#environment) while running `docker run`.
 
+## Build Docker Image
+
+To push a new Docker Image for release:
+
+1. Change the `version` in `package.json`
+2. Run `npm install` to update the `package-lock.json`
+3. Commit
+4. `cd docker`
+5. Run `./build.sh` script
+6. Push to Docker Hub: `docker push gojoychain/explorer:$TAG`
+
 ## Deploy
 
 Please see the [Kubernetes repo](https://gitlab.com/gojoychain/kubernetes) for deploying it to a cluster.
