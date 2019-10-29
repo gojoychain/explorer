@@ -17,13 +17,9 @@ gojoy-explorers-cluster.cluster-ro-cfbnpv02x8fk.ap-northeast-2.rds.amazonaws.com
 
 ## Run
 
-### Running Local
+### Environment
 
-Follow steps in [Manual Deployment](https://docs.blockscout.com/for-developers/manual-deployment) to run an explorer locally.
-
-### Running Docker
-
-To run the Dockerized explorer you can get the image from `https://hub.docker.com/r/gojoychain/explorer`. You will need to `docker run` it with the proper environment setup. The following environment variables are required:
+The following environment variables are required when running the explorer.
 
 ```bash
 PORT=4000
@@ -36,11 +32,19 @@ ETHEREUM_JSONRPC_HTTP_URL=https://api.gojoychain.com
 ETHEREUM_JSONRPC_WS_URL=wss://api.gojoychain.com/ws
 ETHEREUM_JSONRPC_TRACE_URL=https://api.gojoychain.com
 ECTO_USE_SSL=false
-DATABASE_URL=postgres://username:password@localhost:5432/explorer_mainnet
-SECRET_KEY_BASE=mysecretkeybase
-GECCEX_APP_ID=12345678-1234-1234-123456789012
-GECCEX_CODE=abcdefghijklmnopqrstuvwxyz
+DATABASE_URL=postgres://username:password@localhost:5432/explorer_mainnet # your DB
+SECRET_KEY_BASE=mysecretkeybase # your secret key base
+GECCEX_APP_ID=12345678-1234-1234-123456789012 # your GECCEX app id
+GECCEX_CODE=abcdefghijklmnopqrstuvwxyz # your GECCEX code
 ```
+
+### Running Local
+
+Follow steps in [Manual Deployment](https://docs.blockscout.com/for-developers/manual-deployment) to run an explorer locally.
+
+### Running Docker
+
+To run the Dockerized explorer you can get the image from `https://hub.docker.com/r/gojoychain/explorer`. You will need to add [environment variables](#environment) while running `docker run`.
 
 ## Deploy
 
