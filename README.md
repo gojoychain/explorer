@@ -1,3 +1,53 @@
+# Gojoy Explorer
+
+## Architecture
+
+### Amazon EKS/Kubernetes
+
+Gojoy Explorer is currently running replicated instances on a EKS Kubernetes cluster.
+
+### Amazon RDS
+
+We are currently using Amazon RDS for persisting the PostgresQL data from the explorer.
+
+```text
+gojoy-explorers-cluster.cluster-cfbnpv02x8fk.ap-northeast-2.rds.amazonaws.com (write)
+gojoy-explorers-cluster.cluster-ro-cfbnpv02x8fk.ap-northeast-2.rds.amazonaws.com (read)
+```
+
+## Run
+
+### Running Local
+
+Follow steps in [Manual Deployment](https://docs.blockscout.com/for-developers/manual-deployment) to run an explorer locally.
+
+### Running Docker
+
+To run the Dockerized explorer you can get the image from `https://hub.docker.com/r/gojoychain/explorer`. You will need to `docker run` it with the proper environment setup. The following environment variables are required:
+
+```bash
+PORT=4000
+MIX_ENV=prod
+NETWORK=Gojoychain
+SUBNETWORK=Mainnet
+COIN=JOY
+ETHEREUM_JSONRPC_VARIANT=geth
+ETHEREUM_JSONRPC_HTTP_URL=https://api.gojoychain.com
+ETHEREUM_JSONRPC_WS_URL=wss://api.gojoychain.com/ws
+ETHEREUM_JSONRPC_TRACE_URL=https://api.gojoychain.com
+ECTO_USE_SSL=false
+DATABASE_URL=postgres://username:password@localhost:5432/explorer_mainnet
+SECRET_KEY_BASE=mysecretkeybase
+GECCEX_APP_ID=12345678-1234-1234-123456789012
+GECCEX_CODE=abcdefghijklmnopqrstuvwxyz
+```
+
+## Deploy
+
+Please see the [Kubernetes repo](https://gitlab.com/gojoychain/kubernetes) for deploying it to a cluster.
+
+# Blockscout Docs
+
 <p align="center">
   <a href="https://blockscout.com">
     <img width="200" src="https://blockscout.com/eth/mainnet/android-chrome-192x192.png" \>
